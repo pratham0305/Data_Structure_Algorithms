@@ -1,1 +1,4 @@
-Hello this is data structure codes in c++
+                       ----------This contains codes of Data Structures written C++ ----------------------
+                    
+  1. Binary search :
+  I/P:
