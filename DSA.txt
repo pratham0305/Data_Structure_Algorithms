@@ -2,3 +2,92 @@
                     
   1. Binary search :
   I/P:
+#include<iostream>
+using namwspace std;
+/* It is using iterators.*/
+
+int Bibary_Search(struct Array arr,int key){//Here, we have used struct Array and object arr.
+	int l=0;
+	int h = arr.length-1; //Here, .length is a class function means ut can only be applied on members of structure and classes.
+	
+	while(l<=h){
+		int mid = (l+h)/2;
+		
+		if(key==arr.A[mid]){
+			return mid;
+		}else if(key<arr.A[mid]){
+			h = mid-1;
+			   
+		}else{
+			l= mid+1;
+		}
+		
+
+	}
+	return -1;
+}
+
+int main(){
+	struct Array arr={{2,3,5,6},20,23}; //Here, Array is the name of the struct and arr is the name of the object.
+	
+    cout<<Binary_Search(arr,5); //It will only show the index number if the found element.
+	
+	return 0;
+	
+}
+ 
+------------------------------------------------------------------------------
+/*Using recursive function.*/ 
+int Rbinary_Search(int A[],int l,int h, int key){
+	int mid;
+	if(l<=h){
+		mid = (l+h)/2;
+		if(key==A[mid]){
+			return mid;
+		}else if(key<A[mid]){
+			return Rbinary_Search(A,l,mid-1,key)
+		}else{
+			return Rbinary_Search(A,mid+1,h,key)
+		}
+	}
+	return -1;
+}
+int main(){
+	int A[3]= {1,2,3};
+	Rbinary_Search(A,0,2,2);
+	return 0;
+}
+
+
+
+2. Revesing an array :
+
+I/P:   
+/*This method uses an another array.
+int reverse(int A[]){
+  int i,j;
+  int B[];
+  }
+  for(i=A.length-1,j=0;i>=0,j>=A[].length-1;i--,j++){
+      B[j] = A[i];
+  }
+  
+  for(i=0,j=0;i>=B.length-1,j>=B.length-1;i++,j++){
+      A[i] = B[j];
+      }
+--------------------------------------------------------------------------------
+/*This one uses swapping of the elements within the array.
+int main(){
+   int i,j;
+   for(i=0,j=A.length-1;i>=A.length-1,j=0;i++,j--){
+      int temp = A[i];
+      A[i] = A[j];
+      A[j] = temp;
+   }
+}
+
+
+
+
+
+
