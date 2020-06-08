@@ -86,8 +86,47 @@ int main(){
    }
 }
 
+3. Linked List:
+# Creating a LL-
+I/P:
+struct Node{
+ int data;    //This is how a struct Node looks like but we can also use class instead of struct.
+ struct Node *next; //This points to the next Node(Hence,next is the name of the pointer.)
+}first;
 
+void create(int A[],int n){
+  int i;
+  struct Node *t,*last;   //This wil be the first node of our linked list.
+  first = new Node;
+  first->data = A[0];
+  first->next=NULL;
+  last = first;
+        
+  for(i=1;i<n;i++){  //This is for the following nodes.
+   t =new Node;
+   t->data =A[i];
+   t->next =NULL;
+   last->next =t;
+   last =t;
+   
+   
+                  }
 
+}
 
+void display(struct Node *p){
+  
+  while(p!=NULL){
+  cout<<p->data;
+  p=p->next;
+   }
+}
+
+int main(){
+ int A[5] ={1,2,3,4,5}
+ create(A,5);
+ display(first);
+ return 0;
+ }
 
 
