@@ -87,7 +87,7 @@ int main(){
 }
 
 3. Linked List:
-# Creating a LL-
+# Creating a LL(using an array)-
 I/P:
 struct Node{
  int data;    //This is how a struct Node looks like but we can also use class instead of struct.
@@ -115,7 +115,7 @@ void create(int A[],int n){
 }
 
 void display(struct Node *p){
-  
+                              //Dispalying the elements of the linked list.
   while(p!=NULL){
   cout<<p->data;
   p=p->next;
@@ -128,5 +128,21 @@ int main(){
  display(first);
  return 0;
  }
-
-
+# Inserting An element in the LL:
+ (i)Before the first Node:-
+    I/P:
+         Node *t = new Node;
+	 t->data = 21;
+	 t->next = first;  //Here, '*first' is the global declared pointer used as head fir the linked list.
+	 first = t;
+(ii)At nth position:- 
+    I/P:We actually insert the node at (n-1) position,
+          Node *t = new Node;
+	  p=first;  //This is to enter the begining of the linked list.
+	  for(i=0;i<pos-1;i++){  //This is to tranverse the pinter p to the desired position.
+	      p=p->next;
+	  }
+	  t->next = p->next;  //This is the address of the next Node saved in the inserted one.
+	  p->next =t;  //This is the address of the inserted in it's predecessor.
+	  
+      
