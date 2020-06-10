@@ -242,3 +242,4 @@ class LinkedList(){
 };
 
 4. Stack:
+I/P:
