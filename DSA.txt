@@ -240,3 +240,5 @@ class LinkedList(){
   
     
 };
+
+4. Stack:
