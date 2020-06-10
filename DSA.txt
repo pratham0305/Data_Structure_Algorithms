@@ -6,7 +6,7 @@
 using namwspace std;
 /* It is using iterators.*/
 
-int Bibary_Search(struct Array arr,int key){//Here, we have used struct Array and object arr.
+int Binary_Search(struct Array arr,int key){//Here, we have used struct Array and object arr.
 	int l=0;
 	int h = arr.length-1; //Here, .length is a class function means ut can only be applied on members of structure and classes.
 	
