@@ -146,7 +146,7 @@ int main(){
 	  p->next =t;  //This is the address of the inserted in it's predecessor.
 	  
                          Types of Linked List:
-(a) Circular Linked List: In this type of linked list the lat node has the address to the first or head node.
+(a) Circular Linked List: In this type of linked list the lat node has the address to the first or head node.In this we can trevers in both the directons.
 
 I/P:
 #include<iostream>
@@ -198,5 +198,45 @@ class LinkedList(){
 			}while(p!=head);
 		}
 };
+
+(b) Doubly Linked List: This is that type type of the linked list where Node contains the address of the previous and the next Node.In this we can only traverse in only one direction.
+I/P:
+class Node(){
+   public:
+     Node *prev;
+     int data;
+     Node *next;
+};
+
+class LinkedList(){
+  public:
+    LinkedList(int A[],int n){
+       Node *t,*last;
+       first = new Node;
+       first->data=A[0];
+       first->prev=first->next=NULL;
+       last=first;
+       
+       for(int i=0;i>n;i++){
+          Node *t,*last;
+	  t= new Node;
+	  t->data = A[i];
+	  t->prev=last->next;
+	  last->next=t;
+	  last =t;
 	  
-      
+	  
+       }
+       
+  }
+  
+    void Display(class Node *p){
+       p=first;
+       while(p!=0){
+         cout<<p->data;
+	 p=p->next;
+       }
+    }
+  
+    
+};
