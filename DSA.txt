@@ -242,4 +242,54 @@ class LinkedList(){
 };
 
 4. Stack:
+
+#Creating A stack:
+I/P:  This code is writtne in c_languge-
+#include<iostream>
+using namespace std;
+
+struct stack{
+	int size;
+	int top;  //This is used to traverse thought the stack.
+	int *s; // This represnts the stack itself.
+};
+
+int main(){
+	
+	struct stack st;
+	
+	cout<<"Enter the soze of the stack:";
+	cin>>st.size;
+	st.s = new int[st.size]; //Stack using an array.
+	st.top = -1;
+	
+	return 0;
+}
+#Push funcution:
+I/P:
+void push(stack *s,int x){
+	
+	if(st->top==st->size-1){
+		cout<<"Stack Overflow."
+	}else{
+		st->top++;  //This command lets us to iterate to the empty sapce of the stack.
+	    st->s[st->top]=x;  //We are using '*s' pointer to traverse through and 'top' for accessing the indexes by using object pointer 'st'.
+	}
+}
+
+#Pop function:
+I/P:
+
+int pop(stack *st){
+	int x=-1;
+	if(st->top==-1){
+		cout<<"Stack Overflow";
+	}else{
+		st->s[st->top]=x;
+		st->top--;
+	}
+	return x;
+}
+
+#Peak function:
 I/P:
