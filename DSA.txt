@@ -152,13 +152,13 @@ I/P:
 #include<iostream>
 using namespace std;
 
-class Node(){
+class Node{
 	public:
 		int data;
 		Node *next;
 };
 
-class LinkedList(){
+class LinkedList{
 	
 	private:
 		LinkedList(){
@@ -201,14 +201,14 @@ class LinkedList(){
 
 (b) Doubly Linked List: This is that type type of the linked list where Node contains the address of the previous and the next Node.In this we can only traverse in only one direction.
 I/P:
-class Node(){
+class Node{
    public:
      Node *prev;
      int data;
      Node *next;
 };
 
-class LinkedList(){
+class LinkedList{
   public:
     LinkedList(int A[],int n){
        Node *t,*last;
@@ -267,7 +267,7 @@ int main(){
 }
 #Push funcution:
 I/P:
-void push(stack *s,int x){
+void push(stack *st,int x){
 	
 	if(st->top==st->size-1){
 		cout<<"Stack Overflow."
@@ -291,5 +291,198 @@ int pop(stack *st){
 	return x;
 }
 
-#Peak function:
+#Peek function:
+I/P:
+                                    
+void peek(struct stack st,int pos){
+	
+	int x=-1;
+	if(st.top - pos +1>0){
+		cout<<"Invalid Position";
+	}else{
+		x=st.s[st.top - pos +1]; //This is a formula for finding out the index of the stack.
+	}
+	return x;
+}
+
+#Diplaying the stack:
+I/P:
+void Display(struct stack st){
+    for(int i=top;i>=0;i--){
+       cout<<st->s[i];
+    }
+}
+
+----------------------------------------------------------------------------------
+Stack Using Linked List: In this type we will start inserting elements from the last and to head.
+# Push Function:
+I/P:
+struct Node{
+  int data;
+  Node *next;
+};
+
+struct stack{
+  int size;
+  stack *s;
+};
+
+void push(int x){
+  Node *t= new Node;
+  if(t===NULL){
+    cout<<"Stack Overflow";
+}else{
+     t->data =x
+     t->next = top;
+     top=t;
+     }
+    }
+    
+ # Pop function:
+ I/P:
+ int pop(){
+ Node *p;
+ int x=-1;
+ if(top==NULL){
+   cout<<"Stack is empty.";
+   }else{
+     p=top;
+     top=top->next;
+     x=p->data;
+     delete p;
+    
+   }
+   return x;
+ }
+ 
+# Peek funcion:
+I/P:
+
+int peek (int pos){
+  Node *p;
+  int x=-1;
+  for(int i=;i<pos-1;i++ && p!=0){
+    p=p->next;
+  }
+  
+  if(p!=NULL){
+    return p->data;
+  }else{
+  return -1}
+  
+}
+NOTE :- Stack operations using Linked List written in C++ Language:
+I/P:
+#include<iostream>
+using namespace std;
+
+class Node{
+	public:
+		int data;
+		Node *next;
+};
+
+class Stack{
+	private:
+		Node *top;
+	public:
+		Stack(){
+			top == NULL;
+		}
+		void push(int x){
+			Node *t;
+			t= new Node;
+			if(t==NULL){
+				cout<<"Stack is empty";
+			}else{
+				 t->data =x;
+				 t->next =top;
+				 top =t;
+			}
+		}
+		
+		int pop(){
+			int x=-1;
+			if(top==NULL){
+				cout<<"Stack is empty.";
+			}else{
+				x=top->data;
+				Node *t = new Node;
+				t=top;
+				top=top->next;
+				delete t;
+				return x;
+			}
+		}
+		void Display(){
+			Node *p;
+			while(p!=NULL){
+				cout<<p->data;
+				p=p->next;
+			}
+		}
+};
+
+int main(){
+	Stack st;
+	st.push(12);
+	st.push(20);
+	st.push(30);
+	st.Display();
+	return 0;
+}
+
+5. Queues :- Follows FIFO property.
+# Using an array: 
+I/P:
+NOTE:- Following codes are written in C language.
+struct queue{    //This is how a queue's structure should look like.
+	int size;
+	int front;
+	int rear;
+	int *Q;
+};
+
+
+int main(){
+	
+	struct queue q;    //Initializing a queue.
+	cout<<"Enter the size of the queue:";
+	cin>>q.size;
+	
+	q.Q = new queue;
+	q.front=q.rear=-1;
+	
+	return 0;
+}
+
+# Enqueue function:
+I/P:
+void enqueue(queue *q,int x){
+	if(q->rear==q->size-1){
+		cout<<"Queue is full";
+	}else{
+		cout<<"Enter the value you want to enter:";
+		cin>>x;
+		q->rear++;
+		q->Q[q->rear]=x;
+		
+	}
+	
+	
+}
+# Dequeue function:
+I/P:
+int dequeue(queue *q){
+   int x=-1;
+   if(q->front==q->rear){
+      cout<<"Queue is empty";
+   }else{
+      q->front++;
+      x=q->Q[q->rear];
+   }
+   return x;
+}
+--------------------------------------------------------
+Note: The code written below is written in C++ languge:
 I/P:
