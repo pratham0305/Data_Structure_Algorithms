@@ -486,3 +486,229 @@ int dequeue(queue *q){
 --------------------------------------------------------
 Note: The code written below is written in C++ languge:
 I/P:
+#include<iostream>
+using namespace std;
+
+class queue{
+	private:
+		int size;
+		int front;
+		int rear;
+		int *Q;
+		
+	
+	public:
+		queue(){
+			front = rear =-1;
+			size =10;
+			Q = new int[size];
+			
+		}
+		queue(int size){
+			front = rear =-1;
+			this->size=size;
+			Q = new int[this->size];
+		}
+		
+		void enqueue(int x){
+			if(rear == size-1){
+				cout<<"Queue is full";
+			}else{
+				
+				rear++;
+				Q[rear]=x;
+			}
+		}
+		int dequeue(){
+			int x=-1;
+			if(front == rear ){
+				cout<<"Queue is empty";
+				
+			}else{
+				x=Q[front+1];
+				front++;
+			}
+			return x;
+		}
+		
+		void Display(){
+			for(int i=front+1;i<=rear;i++){
+				cout<<Q[i];
+			}
+		}
+};
+
+
+int main(){
+	
+		queue q(3);
+		
+		q.enqueue(10);
+		q.enqueue(23);
+		q.enqueue(45);
+		q.Display();
+		
+	
+	return 0;
+}
+                  Circular Queue (Differences can be spot in enqueue,dequeue and the display function):
+I/P:
+#include<iostream>
+using namespace std;
+
+class queue{
+	private:
+		int size;
+		int front;
+		int rear;
+		int *Q;
+		
+	
+	public:
+		queue(){
+			front = rear =-1;
+			size =10;
+			Q = new int[size];
+			
+		}
+		queue(int size){
+			front = rear =-1;
+			this->size=size;
+			Q = new int[this->size];
+		}
+		
+		void enqueue(int x){
+			if((rear+1)% this->size==front){
+				cout<<"Queue is full";
+			}else{
+				
+				rear = (rear+1) % this->size;
+				Q[rear]=x;
+			}
+		}
+		int dequeue(){
+			int x=-1;
+			if(front == rear ){
+				cout<<"Queue is empty";
+				
+			}else{
+				front = (front+1)% this->size;
+				x=Q[front+1];
+				
+			}
+			return x;
+		}
+		
+		void Display(){
+			
+			int i=front+1;
+			do{
+			    cout<<Q[i];
+			    i=(i+1)% this->size;
+			}while(i!=(rear+1)% this->size);
+			
+		}
+};
+
+
+int main(){
+	
+		queue q(3);
+		
+		q.enqueue(10);
+		q.enqueue(23);
+		q.enqueue(45);
+		q.Display();
+		
+	
+	return 0;
+}
+
+## Queue using Linked List:
+I/P:
+#include<iostream>
+using namespace std;
+
+class Node{
+	public:
+		int data;
+    	Node *next;
+};
+
+class queue{
+	private:
+		Node *front;
+		Node *rear;
+	
+	public:
+		queue(){
+			front = NULL;
+			rear = NULL;
+		}
+		~queue(){
+			Node *p;
+			while(front){
+				p=front;
+				delete p;
+				front = front->next;
+			}
+		}
+		
+		void enqueue(int x){
+			
+			Node *t = new Node;
+			if(t==NULL){
+				cout<<"Queue is full.";
+			}else{
+				t->data=x;
+				t->next=NULL;
+				if(front==NULL){
+					front =rear =t;
+				}else{
+					rear =t;
+					rear->next=NULL;
+				}
+			}
+			
+		int dequeue(){
+				int x=-1;
+				Node *p;
+				if(front==NULL){
+					cout<<"Queue is empty.";
+				}else{
+					p=front;
+					x=p->data;
+					front=front->next;
+					delete p;
+				}
+			}
+			
+		void Display(){
+				Node *p=front;
+				
+				while(p){
+					cout<<p->data;
+					p=p->next;
+				
+				}
+			}
+			
+		
+};
+
+
+int main(){
+	
+	queue q;
+	q.enqueue(12);
+	q.enqueue(23);
+	q.enqueue(24);
+	q.Display();
+	
+	return 0;
+}
+
+6. Trees:-
+
+
+I/P:
