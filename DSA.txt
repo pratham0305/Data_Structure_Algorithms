@@ -710,7 +710,145 @@ int main(){
 
 6. Trees:-
 
-
+Using Linked List-
 I/P:
+#include<iostream>
+using namespace std;
+
+class Node{
+	public:
+		Node *lchild;
+		int data;
+		Node *rchild;
+};
+
+class Queue{
+	private:
+		int size;
+		int front;
+		int rear;
+		Node **Q;
+		
+	public:
+		Queue(int size){
+			this->size=size;
+			front=rear=-1;
+			Q = new Node* [size];
+		}
+		
+		~Queue(){
+			delete []Q;
+		}
+		
+		bool isEmpty(){
+			if(front==rear){
+				return true;
+			}else{
+				return false;
+			}
+		}
+		
+		bool isFull(){
+			if(rear==size-1){
+				return true;
+			}else{
+				return false;
+			}
+		}
+		
+		void enqueue(Node *x){
+			if(isFull()){
+				cout<<"Queue overflow.";
+			}else{
+				rear++;
+				Q[rear]=x;
+			}
+			
+		}
+		
+		Node *dequeue(){
+			
+			Node *x = NULL;
+			if(isEmpty()){
+				cout<<"Queue is Empty.";
+			}else{
+				front++;
+				x=Q[front];
+			}
+			return x;
+		}
+};
+
+Node *root = new Node;
+
+void Treecreate(){
+	Node *p;
+	Node *t;
+	Queue q(10);
+	int x;
+	cout<<"Enter the root of the tree:";
+	cin>>x;
+	root->data =x;
+	root->lchild = NULL;
+	root->rchild=NULL;
+	q.enqueue(root);
+	while(!q.isEmpty()){
+		p=q.dequeue();
+		
+		cout<<"Enter the value of the left child of  "<<p->data<<":";
+		cin>>x;
+		if(x!=-1){
+			t =new Node;
+			t->data=x;
+			t->lchild=NULL;
+			t->rchild=NULL;
+			p->lchild=t;
+			q.enqueue(t);
+		}
+		cout<<"Enter the value of right child of "<<p->data<<":";
+		cin>>x;
+		if(x!=-1){
+			t= new Node;
+			t->data=x;
+			t->lchild=NULL;
+			t->rchild=NULL;
+			p->rchild=t;
+			q.enqueue(t);
+		}
+	}
+	
+	
+}
+
+void preorder(Node *p){
+	if(p){
+		cout<<p->data<<",";
+		preorder(p->lchild);
+		preorder(p->rchild);
+	}
+}
+
+void inorder(Node *p){
+	if(p){
+		inorder(p->lchild);
+		cout<<p->data<<",";
+		inorder(p->rchild);
+	}
+}
+
+void postorder(Node *p){
+	if(p){
+		preorder(p->lchild);
+		preorder(p->rchild);
+		cout<<p->data<<",";
+	}
+}
+
+int main(){
+	Treecreate();
+	preorder(root);
+	cout<<endl;
+	
+}
 
 
