@@ -968,7 +968,7 @@ int main(){
 
 
 }
-NOTE : The code below mentions the creation and search of the Binary Search tree:
+NOTE : The code below mentions the creation,search and deletion of Nodes of the Binary Search tree:
 I/P:
 #include<iostream>
 using namespace std;
@@ -1049,6 +1049,61 @@ class Binarytree{
 			}
 		}
 		
+		int Height(Node *p){
+			int x,y;
+			if(p==NULL){
+				return 0;
+			}
+			x=Height(p->lchild);
+			y=Height(p->rchild);
+			return x>y ? x+1 : y+1;
+		}
+		
+		Node *Inpre(Node *p){
+			while(p && p->rchild!=NULL){
+				p=p->rchild;
+			}
+			return p;
+		}
+		
+		Node *Insucc(Node *p){
+			while(p && p->lchild==NULL){
+				p=p->lchild;
+			}
+			return p;
+		}
+		Node *Delete(Node *p,int key){
+			Node *q;
+			if(p=NULL){
+				return NULL;
+			}
+			
+			if(p->lchild==NULL && p->rchild==NULL){ //This condition for the leaf node.
+				if(p==root){
+					root==NULL;
+					return NULL;
+				}
+				delete p;
+				return NULL;
+			}
+			if(key < p->data){
+				p->lchild=Delete(p->lchild,key);
+			}else if(key > p->data){
+				p->rchild=Delete(p->rchild,key);
+			}else{
+				if(Height(p->lchild) > Height(p->rchild)){  //This is to check whether the height of the left subtree is more than the left one.
+					q=Inpre(p->lchild);  //If this is true then the InorderPredecessor will take its place.
+					p->data = q->data;
+					p->lchild=Delete(p->lchild,q->data);
+				}else{
+					q=Insucc(p->rchild); //Here , InorderSuccessor will take it's place.
+					p->data=q->data;
+					p->rchild = Delete(p->rchild,q->data);
+				}
+			}
+			return p;
+		}
+		
 };
 
 
@@ -1071,5 +1126,14 @@ int main(){
 	return 0;
 }
 
-
-
+## AVL Trees :- These are BST with balanced heights. 
+NOTE:- The balance factor whether the tree has optimum height,
+Bf = (height of left sub-tree) - (height of right sub-tree)
+Cases: (a) If Bf > 1 ,then the tree is not balanced.
+(b) If Bf <= 1 ,the the tree is balanced.
+There are 4 ways we can rotate our tree to make it balanced:-
+(i) LL rotation
+(ii) RR rotation
+(iii) LR rotation
+(iv) RL rotation
+Note:- Rotation is performed on that node which is imbalanced.
