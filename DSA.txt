@@ -1289,4 +1289,6 @@ int main(){
 }
 
 7. Sorting techniques:
-(a) 
+(a) Bubble Sort(Comparison Algo,O{n^2}):-
+I/P:
+
