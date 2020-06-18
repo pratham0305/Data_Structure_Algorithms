@@ -1357,6 +1357,38 @@ int main(){
 	}
 	return 0;
 }
-(c) Selection Sort:-
+(c) Selection Sort:- The following may have some kind of mistakes.
 I/P:
+ #include<iostream>
+using namespace std;
 
+void swap(int *x,int *y){
+	int temp;
+	temp =*x;
+	*x=*y;
+	*y=temp;
+}
+
+void SelectionSort(int A[],int n){
+	int i=0;
+	int k,j;
+	for(i=0;i<n-1;i++){
+		for(i=j=k;j<n;j++){
+			if(A[j]<A[k]){
+				k=j;
+			}
+		}
+		swap(&A[i],&A[k]);
+	}
+}
+
+int main(){
+	int i;
+	int B[5]={12,34,1,99,56};
+	SelectionSort(B,5);
+	for(i=0;i<5;i++){
+		cout<<B[i]<<endl;
+	}
+	return 0;
+}
+(d)
