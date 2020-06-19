@@ -1534,3 +1534,229 @@ int main(){
 (g) Bin/Bucket Sort:- similar to count sort.
 I/P:
 (h) Radix sort:- similar to bin sort
+(g) shell sort
+Note :- In this topic la,da factor is very important.And in every program just for easy calculation in hash function only % of 10  is used.
+size if the hash table shouls be a prime number.
+10. Hashing :
+(a) chaining :-
+I/P:
+#include<iostream>
+using namespace std;
+
+class Node{
+	public:
+		int data;
+		Node *next;
+};
+
+class HashTable{
+	public:
+		Node **HT;  //This is the array of nodes.
+		int hash(int key){  //This is the hash function.
+			return key%10;  
+		}
+		HashTable(){
+			HT = new Node *[10];//This is the initialization of the hash table.
+			for(int i=0;i<10;i++){
+				HT[i]=NULL;
+			}
+		}
+		void Insert(int key){
+			int hldx = hash(key);
+			Node *t = new Node;
+			t->data= key;
+			t->next=NULL;
+			if(HT[hldx]=NULL){
+				HT[hldx]=t;
+			}else{
+				Node *p =HT[hldx];
+				Node *q = HT[hldx];
+				while(p && p->data < key){
+					q=p;
+					p=p->next;
+				}
+				if(q==HT[hldx]){
+					t->next=HT[hldx];
+					HT[hldx]=t;
+				}else{
+					t->next=q->next;
+					q->next=t;
+				}
+			}
+		}
+		
+		int Search(int key){
+			int hldx=hash(key);
+			Node *p = HT[hldx];
+			while(p){
+				if(p->data==key){
+					return p->data;
+				}
+				p=p->next;
+			}
+			return -1;
+		}
+		~HashTable() {
+			for (int i=0; i<10; i++){
+				Node* p = HT[i];
+				while (HT[i]){
+					HT[i] = HT[i]->next;
+					delete p;
+					p = HT[i];
+				}
+			}	
+			delete [] HT;
+		}
+		
+};
+
+int main(){
+	class HashTable h;
+	int A[]={12,23,34,78,90,99,89,69,10};
+	int n=10;
+	for(int i=0;i<10;i++){
+		h.Insert(A[i]);
+	}
+	int value = h.Search(78);
+	cout<<value;
+	
+	
+	
+	return 0;
+}
+Closed Hashing 
+(a) Linear Probing:- size of the hash table should be double the size of the elements.
+I/P:
+#include<iostream>
+using namespace std;
+
+int hash(int key){
+	return key%10;
+}
+int probe(int H[],int key){
+	int index = hash(key);
+	int i=0;
+	while(H[(index+i)%10]!=0){
+		i++;
+	}
+	return (index+i)%10;
+}
+void Insert(int H[],int key){
+	int index = hash(key);
+	if(H[index]!=0){
+		probe(H,key);
+	}
+	H[index]=key;
+}
+
+int Search(int H[],int key){
+	int index=hash(key);
+	int i=0;
+	while(H[(index+i)%10]!=key){
+		i++;
+	}
+	return (index+i)%10;
+}
+
+
+
+int main(){
+	int HT[10]={0};
+	Insert(HT,12);
+	Insert(HT,44);
+	Insert(HT,60);
+	int value = Search(HT,44);
+	cout<<value;
+	
+	
+	return 0;
+}
+(b) Quadratic Probing:-
+I/P:
+#include<iostream>
+using namespace std;
+
+int hash(int key){
+	return key%10;
+}
+int Quadraticprobe(int H[],int key){
+	int index = hash(key);
+	int i=0;
+	while(H[(index+i*i)%10]!=0){
+		i++;
+	}
+	return (index+i*i)%10;
+}
+void Insert(int H[],int key){
+	int index = hash(key);
+	if(H[index]!=0){
+		Quadraticprobe(H,key);
+	}
+	H[index]=key;
+}
+
+int Search(int H[],int key){
+	int index=hash(key);
+	int i=0;
+	while(H[(index+i*i)%10]!=key){
+		i++;
+	}
+	return (index+i*i)%10;
+}
+
+
+
+int main(){
+	int HT[10]={0};
+	Insert(HT,12);
+	Insert(HT,44);
+	Insert(HT,60);
+	int value = Search(HT,44);
+	cout<<value;
+	
+	
+	return 0;
+}
+(c) Double Hashing:-
+I/P:
+#inlcude<iostream>
+#define PRIME 7  //Here PRIME is the number next smaller prime just before the last index of the hash table array(n=10,PRIME=7).
+int Hash(int key){
+    return key % 10;
+}
+ 
+int PrimeHash(int key){
+    return PRIME - (key % PRIME);
+}
+ 
+int DoubleHash(int H[], int key){
+    int idx = Hash(key);
+    int i = 0;
+    while (H[(Hash(idx) + i * PrimeHash(idx)) % 10] != 0){
+        i++;
+    }
+    return (idx + i * PrimeHash(idx)) % 10;
+}
+ 
+void Insert(int H[], int key){
+    int idx = Hash(key);
+ 
+    if (H[idx] != 0){
+        idx = DoubleHash(H, key);
+    }
+    H[idx] = key;
+}
+ 
+int Search(int H[], int key){
+    int idx = Hash(key);
+    int i = 0;
+    while (H[(Hash(idx) + i * PrimeHash(idx)) % 10] != key){
+        i++;
+        if (H[(Hash(idx) + i * PrimeHash(idx)) % 10] == 0){
+            return -1;
+        }
+    }
+    return (Hash(idx) + i * PrimeHash(idx)) % 10;
+}
+ 11. Graphs:-
+ 
