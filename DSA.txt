@@ -128,6 +128,68 @@ int main(){
  display(first);
  return 0;
  }
+ 
+ ### Linked List in which user will enter all the elements: -
+ 
+ #include <iostream>
+using namespace std;
+ 
+class Node{
+public:
+    int data;
+    Node* next;
+};
+ 
+int main() {
+ 
+   
+ 	//Creating the head node.
+    Node* head = new Node;
+    //Declaring the last pointer.
+    Node* last;
+    
+ 	cout<<"Enter the first element:";
+    cin>>head->data;
+    
+    head->next = NULL;
+    //The last pointer is also pointing to the head node. 
+    last = head;
+    
+    
+    while(1) {
+    	int answer;
+    	//Creating a nee node.
+    	Node *t = new Node;
+    	cout<<"\nEnter the element or 0 to exit:";
+    	cin>>answer;
+    	if(answer == 0) {//Checking if user want to exit
+    		cout<<"\nYou have entered all the elements:\n";
+    		break;
+		} else {
+			//Giving data to node.
+			t->data = answer;
+			//Since the created node is the end node hence, it's next is NULL
+			t->next = NULL;
+			//Giving the previous node address of the new node which is created.
+			last->next = t;
+			//Now, the last pointer is at the end node.
+			last = t;
+		}
+    	
+	} 
+	//Declaring a pointer node for traversing through the linked list.
+	Node *p;
+	
+	p=head; //Pointing p to the head node.
+	while(p!=NULL) {
+		cout<<p->data<<"\t";
+		p=p->next;
+	}
+ 
+ 
+    return 0;
+}
+
 # Inserting An element in the LL:
  (i)Before the first Node:-
     I/P:
