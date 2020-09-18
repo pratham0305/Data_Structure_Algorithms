@@ -322,7 +322,7 @@ int main() {
 	
 	head->prev = NULL;
 	head->next = NULL;
-	last = head;
+	last = head;//head and last pointer will point at the lone node.
 	
 	//Creating the second node.
 	Node *t = new Node;
@@ -331,11 +331,11 @@ int main() {
 	head->next = t;
 	t->prev = head;
 	t->next = NULL;
-	last = t;
+	last = t;//Now, the second node is the end hence, the last pointer will point to this node.
 	
 	int answer;
 	while(1) {
-		Node *p = new Node;
+		Node *p = new Node;//Creating the more nodes.
 		cout<<"\nEnter the element or 0 to exit:";
 		cin>>answer;
 		
@@ -347,17 +347,17 @@ int main() {
 		} else {
 			
 			p->data = answer;
-			p->next = NULL;
-			p->prev = last;
-			last->next = p;
-			last = p;
+			p->next = NULL;//This newly created node is the end node.
+			p->prev = last;//It's previous pointer will point to the node created before it.
+			last->next = p;//The previous node's next pointer point to the newly created node.
+			last = p;//Now,the newly created node is the end node.
 			
 			
 			
 		}
 		
 	}
-	//Displaying the list in reverse.
+	//Displaying the list in reverse, just check the previous pointer of nodes works.
 	Node *p;
 	p=last; //Pointing l to the head node.
 	while(p!=NULL) {
