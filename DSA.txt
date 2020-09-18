@@ -129,8 +129,7 @@ int main(){
  return 0;
  }
  
- ### Linked List in which user will enter all the elements: -
- 
+ ### Linked List in which user will enter all the elements with a counter: -
  #include <iostream>
 using namespace std;
  
@@ -154,7 +153,7 @@ int main() {
     head->next = NULL;
     //The last pointer is also pointing to the head node. 
     last = head;
-    
+    int count = 1;
     
     while(1) {
     	int answer;
@@ -166,6 +165,7 @@ int main() {
     		cout<<"\nYou have entered all the elements:\n";
     		break;
 		} else {
+			count++;
 			//Giving data to node.
 			t->data = answer;
 			//Since the created node is the end node hence, it's next is NULL
@@ -185,6 +185,7 @@ int main() {
 		cout<<p->data<<"\t";
 		p=p->next;
 	}
+	cout<<"\nThe numbers of elements:"<<count;
  
  
     return 0;
