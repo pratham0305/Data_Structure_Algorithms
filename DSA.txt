@@ -303,6 +303,70 @@ class LinkedList{
   
     
 };
+#include<iostream>
+using namespace std;
+
+class Node{
+	public:
+		int data;
+		Node *prev;
+		Node *next;
+};
+
+int main() {
+	//Creating the head node.
+	Node *head = new Node;
+	Node *last;
+	cout<<"Enter the first element:";
+	cin>>head->data;
+	
+	head->prev = NULL;
+	head->next = NULL;
+	last = head;
+	
+	//Creating the second node.
+	Node *t = new Node;
+	cout<<"Enter the element:";
+	cin>>t->data;
+	head->next = t;
+	t->prev = head;
+	t->next = NULL;
+	last = t;
+	
+	int answer;
+	while(1) {
+		Node *p = new Node;
+		cout<<"\nEnter the element or 0 to exit:";
+		cin>>answer;
+		
+		if(answer == 0) {
+			
+			cout<<"\nYou have entered all the elements.\n";
+			break;
+			
+		} else {
+			
+			p->data = answer;
+			p->next = NULL;
+			p->prev = last;
+			last->next = p;
+			last = p;
+			
+			
+			
+		}
+		
+	}
+	//Displaying the list in reverse.
+	Node *p;
+	p=last; //Pointing l to the head node.
+	while(p!=NULL) {
+		cout<<"\n"<<p->data;
+		p=p->prev;
+	}
+	
+	return 0;
+}
 
 4. Stack:
 
