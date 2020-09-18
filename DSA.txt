@@ -261,6 +261,58 @@ class LinkedList{
 			}while(p!=head);
 		}
 };
+#include<iostream>
+using namespace std;
+
+class Node {
+	public:
+	int data;
+	Node *next;
+};
+
+int main() {
+	//Creating the first node.
+	Node *head,*last;
+	Node *p = new Node;
+	head = p;
+	
+	cout<<"Enter the first element:";
+	cin>>head->data;//taking the vaule of first node.
+	head->next = NULL;
+	last = head;//Since it is the lone node, kas will also point to it.
+	
+	int input;
+	while(1) {//Creating other nodes.
+		cout<<"\nEnter the element or 0 to exit:";
+		cin>>input;
+		
+		if(input == 0) {
+			cout<<"\nYou have entered all the elements:";
+			break;
+			
+		}else { 
+		
+			Node *t = new Node;
+			t->data = input;//Taking in the value.
+			last->next = t;//Storing the address of this node in the previous one.
+			last = t;//last pointer will now point to the end node i.e. the new node.
+			last->next = head;//the last pointer will also point to the head node(because this is a circular linked list).
+			
+		}
+	}
+	
+	p=head;
+	do{
+		cout<<p->data<<"\t";
+		p=p->next;
+	}while(p!=head);//Since this is a circular linked list we cannot use the p!=NULL condition.
+	
+	
+	
+	
+	
+	return 0;
+}
 
 (b) Doubly Linked List: This is that type type of the linked list where Node contains the address of the previous and the next Node.In this we can only traverse in only one direction.
 I/P:
