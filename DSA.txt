@@ -419,6 +419,70 @@ int main() {
 	
 	return 0;
 }
+(d) Doubly Circular Linked List:- 
+
+#include<iostream>
+using namespace std;
+
+class Node {
+	public:
+	int data;
+	Node *next;
+	Node *prev;
+};
+
+int main() {
+	//Creating the first node.
+	Node *head,*last;
+	Node *p = new Node;
+	head = p;
+	
+	cout<<"Enter the first element:";
+	cin>>head->data;//taking the vaule of first node.
+	head->next = NULL;
+	head->prev = NULL;
+	last = head;//Since it is the lone node, last will also point to it.
+	
+	int input;
+	while(1) {//Creating other nodes.
+		cout<<"\nEnter the element or 0 to exit:";
+		cin>>input;
+		
+		if(input == 0) {
+			cout<<"\nYou have entered all the elements:";
+			break;
+			
+		}else { 
+		
+			Node *t = new Node;
+			t->data = input;//Taking in the value.
+			last->next = t;
+			t->prev = last;
+			last = t;
+			last->next = head;
+			
+		}
+	}
+	//Printing the list in reverse order.
+	/*p=last;
+	do{
+		cout<<p->data<<"\t";
+		p=p->prev;
+	}while(p!=NULL);*/
+	
+	//Printing the list in fwd order.
+	p=head;
+	do{
+		cout<<p->data<<"\t";
+		p=p->next;
+	}while(p!=head);
+	
+	
+	
+	
+	
+	return 0;
+}
 
 4. Stack:
 
