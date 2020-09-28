@@ -1,0 +1,53 @@
+Diagonal Matrix:
+#include<iostream>
+using namespace std;
+
+class matrix{
+	private:
+		int n;
+		int *A;
+	public:
+		matrix(int n){
+			this->n = n;
+			A= new int[n];
+		}
+
+		void set(int x,int i, int j){
+			if(i==j){
+				A[i-1] = x;
+			}
+		}
+		int get(int i,int j){
+			if(i==j){
+				return A[i];
+			}
+			
+		}
+
+		void display(){
+			for(int i=0;i<n;i++){
+				for(int j=0;j<n;j++){
+					if(i==j){
+						cout<<A[i]<<" ";
+					}else{
+						cout<<"0 ";
+					}
+				}
+				cout<<endl;
+			}
+		}
+		~matrix(){
+			delete[] A;
+		}
+};
+
+int main() {
+	class matrix d(5);
+	d.set(1,1,1);
+	d.set(34,2,2);
+	d.set(78,3,3);
+	d.set(67,4,4);
+	d.set(90,5,5);
+	d.display();
+	return 0;
+}
