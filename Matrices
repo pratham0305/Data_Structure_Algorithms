@@ -194,3 +194,60 @@ int main(){
 		8 7 2 3 4 
 		9 8 7 2 3 
 		10 9 8 7 2
+-------------------------Sparse Mtrix : Could be non- sqaured and squared matrix.
+
+#include<iostream>
+#include<stdio.h>
+using namespace std;
+
+class element {         //Defining a element using the coordinate method which will save the row, column and
+	public:						//the value. 
+		int i;
+		int j;
+		int x;
+};
+
+class Sparse {
+	int m;
+	int n;
+	int num;
+	element *e;  //Creating a dynamic array pointer.
+	public:
+	Sparse(int m, int n, int num){
+		this->m = m;
+		this->n = n;
+		this->num = num;
+		this->e = new element[this->num];  //Initializing an array of ojects.
+	}
+	~Sparse() {
+		delete[] e;
+	}
+	void read(){
+		cout<<"Enter non-zero elements:";
+		for(int i=0;i<num; i++){
+			cin>>e[i].i>>e[i].j>>e[i].x;   //Taking in the elements.
+		}
+		
+	}
+	void display(){
+		int k=0;
+		for(int i=0;i<num;i++){
+			for(int j=0;j<num;j++){
+				if(e[k].i==i && e[k].j==j){
+					cout<<e[k++].x<<" ";		//Displaying the elements.
+				} else {
+					cout<<"0 ";
+				}
+			}
+			cout<<"\n";
+		}
+	}
+
+};
+
+int main() {
+	class Sparse s(5,5,5);  //Number of rows and columns could be different.
+	s.read();
+	s.display();
+	return 0;
+}
