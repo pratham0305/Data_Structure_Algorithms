@@ -1,0 +1,28 @@
+---------------Fibonacci Series----------------
+The Fibonacci numbers are the numbers in the following integer sequence.
+0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, ……..
+
+In mathematical terms, the sequence Fn of Fibonacci numbers is defined by the recurrence relation 
+
+                         n = (n-1) + (n-2)
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+	// your code goes here
+    int a=3;
+    int b=56;
+    int n=19;
+    cout<<a<<"\n"<<b<<endl;
+    for(int i=0;i<=19;i++){
+        int nextNumber=a+b;
+        cout<<nextNumber<<endl;
+        
+        //The sequence how the values are assigned to previous variable is important.
+        
+        a=b;           // 'a' must be assigned 'b' value, so that the original value of 'b' is not lost.
+        b=nextNumber;  // 'b' must get the value of  sum Or nextNumber for the sequence to proceed successfully.
+    }
+	return 0;
+}
