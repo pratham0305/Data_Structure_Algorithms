@@ -26,3 +26,29 @@ int main() {
     }
 	return 0;
 }
+
+---------------------------Prime Number--------------------
+
+It is a number which is only divisible by 1 and itself and its opposite is called composite number.
+Example:-  7 is a prime number.
+
+int main() {
+	// your code goes here
+    int n;
+    cout<<"Enter number to check:"<<endl;
+    cin>>n;
+    int count=0;
+    for(int i=2;i<n;i++){
+        if((n%i)==0){
+            count+=1;
+            break;
+        }
+        
+    }
+    if(count!=0){
+        cout<<n<<" is not prime"<<endl;
+    }else{
+        cout<<n<<" is prime."<<endl;
+    }
+	return 0;
+}
