@@ -44,3 +44,7 @@ int RightOccur(int arr[],int size,int key){
         mid=start=((end-start)/2);
     }
     return -1;
+    
+ Note: If the total occurences is asked then,
+ 
+      Total No. Of occurences = (LastOccur - FirstOccur) + 1
