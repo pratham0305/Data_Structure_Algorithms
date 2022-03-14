@@ -48,3 +48,6 @@ int RightOccur(int arr[],int size,int key){
  Note: If the total occurences is asked then,
  
       Total No. Of occurences = (LastOccur - FirstOccur) + 1
+---------------------------------------------------------------------------------------------
+Question 2:-
+
