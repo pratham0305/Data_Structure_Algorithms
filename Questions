@@ -49,5 +49,23 @@ int RightOccur(int arr[],int size,int key){
  
       Total No. Of occurences = (LastOccur - FirstOccur) + 1
 ---------------------------------------------------------------------------------------------
-Question 2:-
+Question 2:- https://leetcode.com/problems/peak-index-in-a-mountain-array/
+Solution:                                                            2 
+                                                                    /  \
+int PeakIndex(int arr[],int size){                                 1    2                             Here, 2 is the Peak(Largest Number). 
+    int s=0;                                                      /      \                      LeftSide Depiction: Array[i]<Array[i+1].....
+    int e=size-1;                                                0        1                      RightSide Depiction:  Array[i]>Array[i+1].....
+    int mid=s+(e-s)/2;                                          Mountain Array {0,1,2,1,0}        Peak Depiction:     ......<Array[i-1]<Array[i]>Array[i-1]>....
+                                                                                  
+    while(s<e){    
+        if(arr[mid]<arr[mid+1]){
+            s=mid+1;
+        }else{
+            e=mid;  // combined both RightSide and Peak Case. Hence, cannot use e=mid-1.
+        }
+        mid=s+(e-s)/2;
+    }
+    return s;
+}
+---------------------------------------------------------------------------
 
