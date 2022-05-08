@@ -176,3 +176,42 @@ double morePrecisoin(int n,int precision,int tempsol){
     }
    return ans;
 }
+----------------------------------------------------------------------
+Question 5: https://leetcode.com/problems/reverse-string/submissions/
+Solution :- 
+   class Solution {
+public:
+    void reverseString(vector<char>& s) {
+        int st=0;
+        int e=s.size()-1;
+        while(st<e){
+            swap(s[st++],s[e--]);
+        }
+        
+    }
+};
+---------------------------------------------------
+Question 6: Check if a string is a palindrome(not case sensitive).
+Solution:
+char toLowerCase(char c){  //'Not case sensitive' means we will have to convert all the strings to lowercase to compare the characters of the string.
+    if(c>='a'&&c<='z'){
+        return c;
+    }else{
+        c=c+32;
+    }
+}
+bool palindrome(char c[],int n){
+    int s=0;
+    int e=n-1;
+    while(s>=e){
+        if(toLowerCase(c[s])!=toLowerCase(c[e])){
+            return 0;
+        }else{
+            s++;
+            e--;
+
+        }
+
+    }
+    return 1;
+}
