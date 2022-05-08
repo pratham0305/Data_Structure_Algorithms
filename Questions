@@ -194,7 +194,7 @@ public:
 Question 6: Check if a string is a palindrome(not case sensitive).
 Solution:
 char toLowerCase(char c){  //'Not case sensitive' means we will have to convert all the strings to lowercase to compare the characters of the string.
-    if(c>='a'&&c<='z'){
+    if((c>='a'&&c<='z') || (c>='0' && c<='9') ){
         return c;
     }else{
         c=c+32;
@@ -215,3 +215,58 @@ bool palindrome(char c[],int n){
     }
     return 1;
 }
+----------------------------------------------
+Question 7: https://leetcode.com/problems/valid-palindrome/
+Solution: 
+class Solution{
+private:
+    bool valid(char c){
+        if((c>='a'&&c<='z') ||   (c>='A'&&c<='Z') || (c>='0'&&c<='9')   ){
+            return 1;
+        }
+        return 0;
+    }
+    char toLowerCase(char c){  
+        if((c>='a'&&c<='z') || (c>='0' && c<='9') ){
+            return c;
+        }else{
+            c=c+32;
+            return c;
+        }
+    }
+    bool palindrome(string a){
+        int s=0;
+        int e=a.length()-1;
+        while(s>=e){
+            if(a[s]!=a[e]){
+                return 0;
+            }else{
+                s++;
+                e--;
+
+            }
+
+        }
+        return 1;
+    }
+public:
+    bool isPalindrome(string s) {
+        //Removing useless characters
+        string temp="";
+        
+        for(int i=0;i<s.length();i++ ){
+            if(valid(s[i])){
+                temp.push_back(s[i]);
+            }
+        }
+            
+        //cnverting to lower case
+        for(int i=0;i<s.length();i++){
+            temp[i]=toLowerCase(s[i]);
+        }
+            
+        return palindrome(s);
+    }
+             
+    
+};
