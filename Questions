@@ -305,3 +305,20 @@ int main(){
     
     return 0;
 }
+-------------------------------------------
+Question 8: Repalce all the witspaces in a string with "@u".
+Solution: 
+string replacSpace(string &str){
+    string temp="";
+    for(int i=0;i<str.length();i++){
+        if(str[i]==' '){
+            temp.push_back("@");
+            temp.push_back("u");
+        }else{
+            temp.push_back(str[i]);
+        }
+    }
+
+    return temp;
+}
+---------------------------------------------------------------
