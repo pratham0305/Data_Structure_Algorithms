@@ -270,3 +270,38 @@ public:
              
     
 };
+------------------------------------------------------------
+Question 8: maximum occurence of a character in a string.
+solution:
+char maxOccurence(string s){
+    int arra[26]={0};
+    for(int i=0;i<s.length();i++){
+        int position=0;
+        //for lower case characters
+        if(s[i]>='a' && s[i]<='z'){
+            position = s[i]-'a';
+        }else{//for upper case characters
+            position=s[i]-'A';
+        }
+        arra[position]++;
+    }
+
+    int max=-1,ans=0;
+    for(int i=0;i<26;i++){
+        if(max<arra[i]){
+            ans=i;
+            max=arra[i];
+        }
+    }
+    char finalanswer='a'+ans;
+    return finalanswer;
+
+}
+int main(){
+   
+    string s;
+    cin>>s;
+    cout<<maxOccurence(s)<<endl;
+    
+    return 0;
+}
