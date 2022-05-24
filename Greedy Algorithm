@@ -46,3 +46,49 @@ int main()
     cout << knapSack(W, wt, val, n); 
     return 0; 
 } 
+--------------------------------------------
+Sieve Of estarthes: counting hoe many numbers of prime numbers upto  a given number 'n'.
+Time Complexity= O(n*log(logn))
+
+
+int countPrime(int n){
+    int count=0;
+    //we will assume all numbers are prime
+    vector<bool> prime (n+1,true);
+    prime[0]=prime[1]=false;
+
+    for(int i=2;i<n;i++){
+        if(prime[i]){
+            count++;
+
+            for(int j=2*i;j<n;j=j+i){
+                prime[j]=0;
+            }
+        }
+    }
+    return count;
+
+}
+-------------------------------------------------------
+GCD of two numbers using Euclid Method
+
+
+int gcd(int a,int b){
+    if(a==0){
+        return b;
+    }
+    if(b==0){}
+    return a;
+
+    while(a!=b){
+        if(a>b){
+
+            a=a-b;
+        }else{
+            b=b-a;
+        }
+    }
+    return a;
+}
+
+-----------------------------------------------
