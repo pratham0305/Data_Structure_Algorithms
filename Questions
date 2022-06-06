@@ -503,6 +503,49 @@ int allocation(vector<int> arr,int n,int m){
     return ans;
 }
 ------------------------------------
+Painter Partition Problem
+Solution: 
+bool ifPossible(vector<int>arr,int k, int mid){
+    int PaintingPartSum=0;
+    int painterCount=1;
+
+    for(int i=0;i<arr.size();i++){
+        if((PaintingPartSum+=arr[i]) < mid){
+            PaintingPartSum+=arr[i];
+        }else{
+            painterCount++;
+            if(painterCount>k || arr[i]>mid){
+                return false;
+            }
+            PaintingPartSum=0;
+            PaintingPartSum=arr[i];
+        }
+    }
+    return true;
+
+}
+
+int FindMinimumTime(vector<int> arr,int k){
+    int s=0;
+    int sum=0;
+    for(int i=0;i<arr.size();i++){
+        sum+=arr[i];
+    }
+    int e=sum;
+    int mid=s+(s-e)/2;
+    int ans=-1;
+
+    while(s<=e){
+        if(isPossible(arr,k,mid)){
+            ans=mid;
+            e=mid-1;
+        }else{
+            s=mid+1;
+        }
+        mid=s+(s-e)/2;
+    }
+    return ans;
+}
 
                 
                      
