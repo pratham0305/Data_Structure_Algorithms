@@ -488,7 +488,7 @@ int allocation(vector<int> arr,int n,int m){
 
     int e=sum;
     int ans=-1;
-    int mid=s+(s-e)/2;
+    int mid=s+(e-s)/2;
 
     while(s<=e){
         if(isPossible(arr,n,m,mid)){
@@ -497,7 +497,7 @@ int allocation(vector<int> arr,int n,int m){
         }else{
             s=mid+1;
         }
-        mid=s+(s-e)/2;
+        mid=s+(e-s)/2;
 
     }
     return ans;
@@ -532,7 +532,7 @@ int FindMinimumTime(vector<int> arr,int k){
         sum+=arr[i];
     }
     int e=sum;
-    int mid=s+(s-e)/2;
+    int mid=s+(e-s)/2;
     int ans=-1;
 
     while(s<=e){
@@ -542,7 +542,7 @@ int FindMinimumTime(vector<int> arr,int k){
         }else{
             s=mid+1;
         }
-        mid=s+(s-e)/2;
+        mid=s+(e-s)/2;
     }
     return ans;
 }
