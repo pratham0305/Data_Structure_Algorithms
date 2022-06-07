@@ -546,6 +546,48 @@ int FindMinimumTime(vector<int> arr,int k){
     }
     return ans;
 }
+------------------------------------------
+Aggressive Cow Problem
+Solution:
+bool ifPossible(vecotr<int>& arr,int k,int mid){
+    int cowCount=1;
+    int lastPos=arr[0]; 
 
-                
+    for(int i=0;i<arr.size();i++){
+        if((arr[i]-lastPos) >= mid){
+            cowCount++;
+            if(cowCount==k){
+                return true;
+
+            }
+            lastPos=arr[i];
+        }
+    }
+    return false;
+}
+
+int aggressiveCows(vecotr<int>& arr,int k){
+    int s=0;
+    int maxi=-1;
+//We have to sort the given array, so as to properly calculate dist. b/w stalls
+    sort(v.begin(),v.end());
+
+    for(int i=0;i<arr.size();i++){
+        maxi=max(maxi,arr[i]);
+    }
+    int ans=-1;
+    int e=maxi;
+    int mid=s+(e-s)/2;
+    while(s<=e){
+        if(ifPossible(arr,k,mid)){
+            ans=mid;
+            s=mid+1;//we need to keep cows at max distance
+        }else{
+            e=mid-1;
+        }
+        mid=s+(e-s)/2;
+    }
+    return ans;
+}
+            
                      
