@@ -419,3 +419,24 @@ Node* kReverse(Node* head,int k){
     return prev;
 
 }
+--------------------------
+Checking if a given linked list id circular or not
+Solution:
+Approach 1:-
+bool isCircular(Node* head){
+    if(head==NULL){
+        return false;
+    }
+
+    Node* temp=head->next;
+    while(temp!=NULL && temp!=head){
+        temp=temp->next;
+    }
+    if(temp==head){
+        return true;
+    }
+
+    return false;
+}
+
+Approach 2 :-
