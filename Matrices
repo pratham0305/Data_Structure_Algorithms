@@ -438,5 +438,43 @@ bool isCircular(Node* head){
 
     return false;
 }
+-------------------------------------
+Detect a loop in a Linked List
+Solution:
+Approach 1 :-
+bool isCircular(Node* head){
+    if(head==NULL){
+        return false;
+    }
 
-Approach 2 :-
+    Node* temp=head->next;
+    while(temp!=NULL && temp!=head){
+        temp=temp->next;
+    }
+    if(temp==head){
+        return true;
+    }
+
+    return false;
+}
+
+Approach 2: Floyd Detection Method(it detects & return the node where loop ends)
+Node* floydDetection(Node* head){
+    if(head==NULL){
+        return NULL;
+    }
+    Node* slow=head;
+    Node* fast=head;
+    while(slow!=NULL && fast!=NULL){
+        fast=fast->next;
+        if(fast!=NULL){
+            fast=fast->next;
+        }
+        slow=slow->next;
+        if(slow==fast){
+            return slow;
+        }
+    }
+
+    return NULL;
+}
