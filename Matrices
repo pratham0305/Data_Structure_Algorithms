@@ -425,7 +425,7 @@ Solution:
 Approach 1:-
 bool isCircular(Node* head){
     if(head==NULL){
-        return false;
+        return true;
     }
 
     Node* temp=head->next;
