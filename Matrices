@@ -391,3 +391,31 @@ Node* reverseLinkedList(Node* head){
     return head;
 
 }
+--------------------------
+Reversing A Linked List in 'K' groups
+Solution:
+Node* kReverse(Node* head,int k){
+    //base case
+    if(head==NULL){
+        return NULL;
+    }
+    //step1: reverse first K nodes
+    Node* prev=NULL;
+    Node* curr=head;
+    Node* next=NULL;
+    int cnt=0;
+    while(curr!=NULL && cnt<k){
+        next=curr->next;
+        curr->next=prev;
+        prev=curr;
+        curr=next;
+        cnt++;
+    }
+    //other nodes
+    if(next!=NULL){
+        head->next=kReverse(next,k);
+    }
+    
+    return prev;
+
+}
