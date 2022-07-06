@@ -674,3 +674,131 @@ public:
         
     }
 };
+---------------------------------------------
+Question 17 : https://leetcode.com/problems/set-matrix-zeroes/
+Solution:
+Approach 1 : Brute Force  , Time Complexity= O((N*M)*(M+N)) , Space Complexity = O (1)
+#include<bits/stdc++.h>
+using namespace std;
+void setZero(vector<vector<int>> &matrix){
+    int row=matrix.size(),col=matrix[0].size();
+
+    for(int i=0;i<row;i++){
+        for(int j=0;j<col;j++){
+
+            if(matrix[i][j]==0){
+
+                int pos=i-1;//above rows
+                while(pos>=0){
+                    if(matrix[pos][j]!=0){
+                        matrix[pos][j]=-1;
+                    }
+                    pos--;
+                }
+
+                pos=i+1;//below rows
+                while(pos<row){
+                    if(matrix[pos][j]!=0){
+                        matrix[pos][j]=-1;
+                    }
+                    i++;
+                }
+
+                pos=j-1;//before cols
+                while(pos>=0){
+                    if(matrix[i][pos]!=0){
+                        matrix[i][pos]=-1;
+                    }
+                    pos--;
+                }
+
+                pos=j+1;//after cols
+                while(pos<col){
+                    if(matrix[i][pos]!=0){
+                        matrix[i][pos]=-1;
+                    }
+                    pos++;
+                }
+            }
+        }
+    }
+    //changing to zero's
+    for(int i=0;i<row;i++){
+        for(int j=0;j<col;j++){
+            if(matrix[i][j]<=0){
+                matrix[i][j]=0;
+            }
+        }
+    }
+}
+int main(){
+    vector<vector<int>>arr={{1,1,1},{1,0,1},{1,1,1}};
+    setZero(arr);
+    for (int i = 0; i < arr.size(); i++) {
+        for (int j = 0; j < arr[0].size(); j++) {
+            cout << arr[i][j] << " ";
+        }
+        cout << "\n";
+    }
+    return 0;
+}
+
+Approach 2 : Using New Dummy Arrays, Time Complexity= O((N*M)+(N*M)) , Space Complexity=O(N+N)
+class Solution {
+public:
+    void setZeroes(vector<vector<int>>& matrix) {
+        int row=matrix.size(),col=matrix[0].size();
+        vector<int>dummyR(row,-1);
+        vector<int>dummyC(col,-1);
+        //dummy arrays to zero
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                if(matrix[i][j]==0){
+                    dummyR[i]=0;
+                    dummyC[j]=0;
+                }
+            }
+        }
+        //changing the original matrix
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                if(dummyR[i]==0 || dummyC[j]==0){
+                    matrix[i][j]=0;
+                }
+            }
+        }
+        
+    }
+};
+Approach 3: Optimized Approach , Time Complexity=O(2*N*M), Space Complexity = O(1)
+class Solution {
+public:
+    void setZeroes(vector<vector<int>>& matrix) {
+        int row=matrix.size(),col=matrix[0].size();
+        int col0=1;
+        for(int i=0;i<row;i++){
+            //checking the oth column if 0 exists or not
+            if(matrix[i][0]==0) col0=0;
+            for(int j=1;j<col;j++){
+                matrix[i][0]=0;
+                matrix[0][j]=0;
+                
+            }
+        }
+        //traversing from the reverse direc. to check zero's
+        //and changing the values to 0
+        for(int i=row-1;i>0;i--){
+            for(int j=col-1;j>=0;j--){
+                if(matrix[i][0]==0 || matrix[0][j]==0){
+                    matrix[i][j]=0;
+                }
+            }
+            if(col0==0){
+                matrix[i][0]=0;
+            }
+        }
+      
+        
+    }
+};
+----------------------------------------
