@@ -554,121 +554,96 @@ void Display(struct stack st){
 
 ----------------------------------------------------------------------------------
 Stack Using Linked List: In this type we will start inserting elements from the last and to head.
-# Push Function:
-I/P:
-struct Node{
-  int data;
-  Node *next;
-};
-
-struct stack{
-  int size;
-  stack *s;
-};
-
-void push(int x){
-  Node *t= new Node;
-  if(t===NULL){
-    cout<<"Stack Overflow";
-}else{
-     t->data =x
-     t->next = top;
-     top=t;
-     }
-    }
-    
- # Pop function:
- I/P:
- int pop(){
- Node *p;
- int x=-1;
- if(top==NULL){
-   cout<<"Stack is empty.";
-   }else{
-     p=top;
-     top=top->next;
-     x=p->data;
-     delete p;
-    
-   }
-   return x;
- }
- 
-# Peek funcion:
-I/P:
-
-int peek (int pos){
-  Node *p;
-  int x=-1;
-  for(int i=;i<pos-1;i++ && p!=0){
-    p=p->next;
-  }
-  
-  if(p!=NULL){
-    return p->data;
-  }else{
-  return -1}
-  
-}
-NOTE :- Stack operations using Linked List written in C++ Language:
-I/P:
 #include<iostream>
 using namespace std;
 
-class Node{
-	public:
-		int data;
-		Node *next;
+class node{
+    public:
+        int data;
+        node *next;
+        node(int data){
+            this->data=data;
+            this->next=NULL;
+        }
 };
 
-class Stack{
-	private:
-		Node *top;
-	public:
-		Stack(){
-			top == NULL;
-		}
-		void push(int x){
-			Node *t;
-			t= new Node;
-			if(t==NULL){
-				cout<<"Stack is empty";
-			}else{
-				 t->data =x;
-				 t->next =top;
-				 top =t;
-			}
-		}
-		
-		int pop(){
-			int x=-1;
-			if(top==NULL){
-				cout<<"Stack is empty.";
-			}else{
-				x=top->data;
-				Node *t = new Node;
-				t=top;
-				top=top->next;
-				delete t;
-				return x;
-			}
-		}
-		void Display(){
-			Node *p;
-			while(p!=NULL){
-				cout<<p->data;
-				p=p->next;
-			}
-		}
+class stack{
+
+    public:
+        node *top;
+        stack(){
+            top=NULL;
+        }
+        void push(int e){
+            if(top==NULL){
+                node *temp=new node(e);
+                top=temp;
+            }else{
+                node *temp=new node(e);
+                temp->next=top;
+                top=temp;
+            }
+
+        }
+
+        void pop(){
+            if(top==NULL){
+                node *temp=top;
+                delete temp;
+                top=NULL;
+                cout<<"element gone"<<endl;
+            }else{
+                node *temp=top;
+                top=temp->next;
+                delete temp;
+                cout<<"deleted"<<endl;
+            }
+        }
+        int peek(){
+            if(top==NULL){
+                cout<<"Stack empty";
+                return -1;
+            }else{
+                return top->data;
+            }
+        }
+
+        bool isEmpty(){
+            if(top==NULL){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        void display(){
+            node *temp=top;
+            while(temp!=NULL){
+                cout<<temp->data<<" ";
+                temp=temp->next;
+            }
+            cout<<endl;
+        }
+
 };
 
 int main(){
-	Stack st;
-	st.push(12);
-	st.push(20);
-	st.push(30);
-	st.Display();
-	return 0;
+
+    stack st;
+    st.push(34);
+    st.push(45);
+    st.push(90);
+    st.push(182);
+    st.display();
+    st.pop();
+    cout<<st.peek()<<endl;
+    st.pop();
+    st.pop();
+    st.pop();
+    st.pop();
+    cout<<st.isEmpty();
+    cout<<st.peek();
+    
+    return 0;
 }
 
 5. Queues :- Follows FIFO property.
