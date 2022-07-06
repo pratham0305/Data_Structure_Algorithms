@@ -834,4 +834,23 @@ bool isValidParenthesis(string expression)
     }
 }
 -----------------------------------------------------------
-
+Question 19: https://www.codingninjas.com/codestudio/problems/insert-an-element-at-its-bottom-in-a-given-stack_1171166?topList=love-babbar-dsa-sheet-problems&leftPanelTab=0
+solution:
+void solve(stack<int>&ans,int x){
+    //base case
+    if(ans.empty()){
+        ans.push(x);
+        return ;
+    }
+    //storing the other elements
+    int top=ans.top();
+    ans.pop();
+    //recursive call
+    solve(ans,x);
+    //returning the elements back to stack
+    ans.push(top);
+}
+stack<int> pushAtBottom(stack<int>& myStack, int x) {
+    solve(myStack,x);
+    return myStack;
+}
