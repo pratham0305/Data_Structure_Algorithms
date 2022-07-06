@@ -645,6 +645,98 @@ int main(){
     
     return 0;
 }
+Two Stack implementation in using an array:
+#include<iostream>
+using namespace std;
+class TwoStack{
+    public:
+        int *arr;
+        int top1;
+        int top2;
+        int size;
+        TwoStack(int size){
+            this->size=size;
+            arr=new int[size];
+            this->top1=-1;
+            this->top2=size;
+        }
+
+        void push1(int e){
+            if(top2-top1>1){
+                top1++;
+                arr[top1]=e;
+            }else{
+                cout<<"Stack overflow"<<endl;
+            }
+
+        }
+
+        void push2(int e){
+            if(top2-top1>1){
+                top2--;
+                arr[top2]=e;
+            }else{
+                cout<<"Stack overflow"<<endl;
+            }
+        }
+
+        void pop1(){
+            if(top1>=0){
+                top1--;
+            }else{
+                cout<<"Stack underflow"<<endl;
+            }
+        }
+        void pop2(){
+            if(top2<size){
+                top2++;
+            }else{
+                cout<<"Stack underflow"<<endl;
+            }
+        }
+        int peek1(){
+            if(top1>=0){
+                return arr[top1];
+            }else{
+                return -1;
+            }
+        }
+
+        int peek2(){
+            if(top2<size){
+                return arr[top2];
+            }else{
+                return -1;
+            }
+        }
+        void display(){
+            cout<<"Stack 1"<<endl;
+            int s=top1;
+            while(s>-1){
+                cout<<arr[s]<<" ";
+                s--;
+            }
+            cout<<endl;
+            cout<<"Stack 2"<<endl;
+            s=top2;
+            while(s<size){
+                cout<<arr[s]<<" ";
+                s++;
+            }
+        }
+};
+
+int main(){
+    TwoStack st(6);
+    st.push1(12);
+    st.push2(56);
+    cout<<st.peek1()<<endl;
+    st.push2(23);
+    cout<<st.peek2()<<endl;
+    st.display();
+
+    return 0;
+}
 
 5. Queues :- Follows FIFO property.
 # Using an array: 
