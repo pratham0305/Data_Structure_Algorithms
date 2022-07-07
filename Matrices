@@ -519,3 +519,36 @@ int main(){
 
 	return 0;
 }
+------------------------
+Sorting A Stack using recusion
+void sortedInsert(stack<int>&ans,int x){
+    //base case
+    if(ans.empty() || ans.top()<x){
+        ans.push(x);
+        return;
+    }
+    //saving the elements
+    int num=ans.top();
+    ans.pop();
+    //recrusive call
+    sortedInsert(ans,x);
+    ans.push(num);
+}
+
+void sortStack(stack<int> &stack)
+{
+	//base case
+    if(stack.empty()){
+        return ;
+    }
+    //saving the elements
+    int num=stack.top();
+    stack.pop();
+    //recursive call
+    sortStack(stack);
+    //insert in sorted order
+    sortedInsert(stack,num);
+}
+
+
+
