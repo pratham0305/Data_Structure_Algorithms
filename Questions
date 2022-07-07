@@ -856,7 +856,7 @@ stack<int> pushAtBottom(stack<int>& myStack, int x) {
 }
 ------------------------------------
 Question 20: https://www.codingninjas.com/codestudio/problems/reverse-stack-using-recursion_631875?topList=love-babbar-dsa-sheet-problems&leftPanelTab=0?source=youtube&campaign=Lovebabbarcodestudio&utm_source=youtube&utm_medium=affiliate&utm_campaign=Lovebabbarcodestudio
-Solution:
+Solution: Time Complexity= O(n^2)
 void insertAtBottom(stack<int>&ans,int x){
     //base case
     if(ans.empty()){
@@ -883,8 +883,5 @@ void reverseStack(stack<int> &stack) {
     insertAtBottom(stack,num);
 }
 -------------------------------------
-
-
-
 
 
