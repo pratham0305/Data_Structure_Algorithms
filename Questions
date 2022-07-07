@@ -854,3 +854,37 @@ stack<int> pushAtBottom(stack<int>& myStack, int x) {
     solve(myStack,x);
     return myStack;
 }
+------------------------------------
+Question 20: https://www.codingninjas.com/codestudio/problems/reverse-stack-using-recursion_631875?topList=love-babbar-dsa-sheet-problems&leftPanelTab=0?source=youtube&campaign=Lovebabbarcodestudio&utm_source=youtube&utm_medium=affiliate&utm_campaign=Lovebabbarcodestudio
+Solution:
+void insertAtBottom(stack<int>&ans,int x){
+    //base case
+    if(ans.empty()){
+        ans.push(x);
+        return ;
+    }
+    //saving the other elements
+    int num=ans.top();
+    ans.pop();
+    //recursive call
+    insertAtBottom(ans,x);
+    ans.push(num);
+    
+}
+void reverseStack(stack<int> &stack) {
+     //base case
+    if(stack.empty()){
+        return ;
+    }
+    //saving the other elements
+    int num=stack.top();
+    stack.pop();
+    //recursive call
+    insertAtBottom(stack,num);
+}
+-------------------------------------
+
+
+
+
+
