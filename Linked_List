@@ -1,0 +1,376 @@
+ Linked List:
+#include<iostream>
+using namespace std;
+class Node{
+    public:
+        int data;
+        Node* next;
+        Node(int data){
+            this->data=data;
+            this->next=NULL;
+        }
+        ~Node(){
+            int value=this->data;
+            if(this->next!=NULL){
+                delete next;
+                this->next=NULL;
+            }
+        }
+};
+//This function works when nodes are added sequentially
+//write a separate insertAtMiddle() for adding nodes at random places.
+void insertNode(int pos,int d,Node* &head){
+    //in front of first node
+    if(pos==1){
+        Node* newNode=new Node(d);
+        newNode->next=head;
+        head=newNode;
+    }else{
+        Node* temp=head;
+        int cnt=0;
+        while(cnt<pos-1){
+            temp=temp->next;
+            cnt++;
+
+        }//last node insert
+        if(temp->next=NULL){
+            Node* newNode=new Node(d);
+            temp->next=newNode;
+            return;
+        }//anywhere in between
+        Node* newNode=new Node(d);
+        newNode->next=temp->next;
+        temp->next=newNode;
+        
+    }
+    
+}
+void deleteNode(int pos,Node* &head){
+    if(pos==1){
+        Node* temp=head;
+        head=head->next;
+        temp->next=NULL;
+        delete temp;
+    }else{
+        Node* curr=head;
+        Node* prev=NULL;
+        int cnt=1;
+        while(cnt<pos){
+            prev=curr;
+            curr=curr->next;
+            cnt++;
+        }
+        //last node
+        if(curr->next==NULL){
+            prev->next=NULL;
+            delete curr;
+            return;
+        }
+        prev->next=curr->next;
+        curr->next=NULL;
+        delete curr;
+    }
+}
+void print(Node* head){
+    Node* temp=head;
+    cout<<endl;
+    while(temp!=NULL){
+        cout<<temp->data<<", ";
+        temp=temp->next;
+    }
+    cout<<endl;
+}
+int main(){
+
+   
+
+    Node* node1=new Node(134);
+    Node* head=node1;
+    insertNode(1,34,head);
+    insertNode(2,67,head);
+    insertNode(3,45,head);
+    print(head);
+    deleteNode(2,head);
+    print(head);
+   
+
+
+
+
+    return 0;
+}
+                         Types of Linked List:
+(a) Circular Linked List: In this type of linked list the lat node has the address to the first or head node.In this we can trevers in both the directons.
+
+I/P:
+#include<iostream>
+using namespace std;
+
+class Node{
+	public:
+		int data;
+		Node *next;
+};
+
+class LinkedList{
+	
+	private:
+		LinkedList(){
+			Node *head;
+		}
+	
+	public:
+		LinkedList(){
+			Node *head =NUll;
+		}
+		LinkedList(int A[],int n){
+			Node *t,*last;
+			head= new Node;
+			head->data = A[0];
+			head->next=head;
+			last=head;
+			
+			for(int i=1;i<n;i++){
+				Node *t,*last;
+				t=new Node;
+				t->data=A[i];
+				t->next=last->next;
+				last->next=t;
+				last=t;
+				
+				
+			}
+			
+		}
+		
+		void Display(Node *p){
+			Node *p;
+			p=head;
+			do{
+				cout<<p->data;
+				p=p->next;
+			}while(p!=head);
+		}
+};
+#include<iostream>
+using namespace std;
+
+class Node {
+	public:
+	int data;
+	Node *next;
+};
+
+int main() {
+	//Creating the first node.
+	Node *head,*last;
+	Node *p = new Node;
+	head = p;
+	
+	cout<<"Enter the first element:";
+	cin>>head->data;//taking the vaule of first node.
+	head->next = NULL;
+	last = head;//Since it is the lone node, kas will also point to it.
+	
+	int input;
+	while(1) {//Creating other nodes.
+		cout<<"\nEnter the element or 0 to exit:";
+		cin>>input;
+		
+		if(input == 0) {
+			cout<<"\nYou have entered all the elements:";
+			break;
+			
+		}else { 
+		
+			Node *t = new Node;
+			t->data = input;//Taking in the value.
+			last->next = t;//Storing the address of this node in the previous one.
+			last = t;//last pointer will now point to the end node i.e. the new node.
+			last->next = head;//the last pointer will also point to the head node(because this is a circular linked list).
+			
+		}
+	}
+	
+	p=head;
+	do{
+		cout<<p->data<<"\t";
+		p=p->next;
+	}while(p!=head);//Since this is a circular linked list we cannot use the p!=NULL condition.
+	
+	
+	
+	
+	
+	return 0;
+}
+
+(b) Doubly Linked List: This is that type type of the linked list where Node contains the address of the previous and the next Node.In this we can only traverse in only one direction.
+I/P:
+class Node{
+   public:
+     Node *prev;
+     int data;
+     Node *next;
+};
+
+class LinkedList{
+  public:
+    LinkedList(int A[],int n){
+       Node *t,*last;
+       first = new Node;
+       first->data=A[0];
+       first->prev=first->next=NULL;
+       last=first;
+       
+       for(int i=0;i>n;i++){
+          Node *t,*last;
+	  t= new Node;
+	  t->data = A[i];
+	  t->prev=last->next;
+	  last->next=t;
+	  last =t;
+	  
+	  
+       }
+       
+  }
+  
+    void Display(class Node *p){
+       p=first;
+       while(p!=0){
+         cout<<p->data;
+	 p=p->next;
+       }
+    }
+  
+    
+};
+#include<iostream>
+using namespace std;
+
+class Node{
+	public:
+		int data;
+		Node *prev;
+		Node *next;
+};
+
+int main() {
+	//Creating the head node.
+	Node *head = new Node;
+	Node *last;
+	cout<<"Enter the first element:";
+	cin>>head->data;
+	
+	head->prev = NULL;
+	head->next = NULL;
+	last = head;//head and last pointer will point at the lone node.
+	
+	//Creating the second node.
+	Node *t = new Node;
+	cout<<"Enter the element:";
+	cin>>t->data;
+	head->next = t;
+	t->prev = head;
+	t->next = NULL;
+	last = t;//Now, the second node is the end hence, the last pointer will point to this node.
+	
+	int answer;
+	while(1) {
+		Node *p = new Node;//Creating the more nodes.
+		cout<<"\nEnter the element or 0 to exit:";
+		cin>>answer;
+		
+		if(answer == 0) {
+			
+			cout<<"\nYou have entered all the elements.\n";
+			break;
+			
+		} else {
+			
+			p->data = answer;
+			p->next = NULL;//This newly created node is the end node.
+			p->prev = last;//It's previous pointer will point to the node created before it.
+			last->next = p;//The previous node's next pointer point to the newly created node.
+			last = p;//Now,the newly created node is the end node.
+			
+			
+			
+		}
+		
+	}
+	//Displaying the list in reverse, just check the previous pointer of nodes works.
+	Node *p;
+	p=last; //Pointing l to the head node.
+	while(p!=NULL) {
+		cout<<"\n"<<p->data;
+		p=p->prev;
+	}
+	
+	return 0;
+}
+(d) Doubly Circular Linked List:- 
+
+#include<iostream>
+using namespace std;
+
+class Node {
+	public:
+	int data;
+	Node *next;
+	Node *prev;
+};
+
+int main() {
+	//Creating the first node.
+	Node *head,*last;
+	Node *p = new Node;
+	head = p;
+	
+	cout<<"Enter the first element:";
+	cin>>head->data;//taking the vaule of first node.
+	head->next = NULL;
+	head->prev = NULL;
+	last = head;//Since it is the lone node, last will also point to it.
+	
+	int input;
+	while(1) {//Creating other nodes.
+		cout<<"\nEnter the element or 0 to exit:";
+		cin>>input;
+		
+		if(input == 0) {
+			cout<<"\nYou have entered all the elements:";
+			break;
+			
+		}else { 
+		
+			Node *t = new Node;
+			t->data = input;//Taking in the value.
+			last->next = t;
+			t->prev = last;
+			last = t;
+			last->next = head;
+			
+		}
+	}
+	//Printing the list in reverse order.
+	/*p=last;
+	do{
+		cout<<p->data<<"\t";
+		p=p->prev;
+	}while(p!=NULL);*/
+	
+	//Printing the list in fwd order.
+	p=head;
+	do{
+		cout<<p->data<<"\t";
+		p=p->next;
+	}while(p!=head);
+	
+	
+	
+	
+	
+	return 0;
+}
