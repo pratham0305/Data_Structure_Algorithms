@@ -1595,6 +1595,21 @@ int count(Node *p){   //This function will count number of nodes with degree 2 o
 	  return 0;
    }
 }
+----------------------------------------------------
+Height Of a Tree:
+int height(node *root){
+    //base case
+    if(root==NULL){
+        return 0;
+    }
+
+    int left=height(root->left);
+    int right=height(root->right);
+    int ans=max(left,right)+1;
+
+    return ans;
+
+}
 
 
 ## Binary Search Tree:-
