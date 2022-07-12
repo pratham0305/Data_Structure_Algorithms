@@ -1248,7 +1248,8 @@ void reverseLevelOrderTraversal(node* root){
     }
 }
 --------------------------------------------------
-Inorder Traversal: LNR
+Inorder Traversal: LNR  
+Recursive:
 void inorder(node* root){
     //base case
     if(root==NULL){
@@ -1261,9 +1262,31 @@ void inorder(node* root){
     cout<<root->data<<" ";
     //Right child
     inorder(root->right);
-}    
+}
+
+Iterative:
+vector<int> IterativeInorder(node* root){
+    stack<node*>st;
+    vector<int>inorder;
+    node* temp=root;
+    while(true){
+        if(temp!=NULL){
+            st.push(temp);
+            temp=temp->left;
+        }else{
+            if(st.empty()) break;
+            temp=st.top();
+            st.pop();
+            inorder.push_back(temp->value);
+            temp=temp->right;
+            
+        }
+    }
+    return inorder;
+}
 
 Preorder Traversal: NLR
+Recursive:
 
 void preorder(node* root){
     if(root==NULL){//base case
@@ -1278,6 +1301,28 @@ void preorder(node* root){
     preorder(root->right);
 
 }
+Iterative:
+vector<int> IterativePreorder(node* root){
+    stack<node*>st;
+    vector<int>preorder;
+    if(root==NULL){
+        return preorder;
+    }
+    st.push(root);
+    while(!st.empty()){
+        root=st.top();
+        st.pop();
+        preorder.push_back(root->value);
+        if(root->right){
+            st.push(root->right);
+        }
+        if(root->left)[
+            st.push(root->left);
+        ]
+    }
+    return preorder;
+}
+
 Post Order Traversal: LRN
 void postorder(node* root){
     //base case
