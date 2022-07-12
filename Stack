@@ -1,0 +1,257 @@
+Stack:
+
+#Creating A stack:
+I/P:  This code is writtne in c_languge-
+#include<iostream>
+using namespace std;
+
+struct stack{
+	int size;
+	int top;  //This is used to traverse thought the stack.
+	int *s; // This represnts the stack itself.
+};
+
+int main(){
+	
+	struct stack st;
+	
+	cout<<"Enter the soze of the stack:";
+	cin>>st.size;
+	st.s = new int[st.size]; //Stack using an array.
+	st.top = -1;
+	
+	return 0;
+}
+#Push funcution:
+I/P:
+void push(stack *st,int x){
+	
+	if(st->top==st->size-1){
+		cout<<"Stack Overflow."
+	}else{
+		st->top++;  //This command lets us to iterate to the empty sapce of the stack.
+	    st->s[st->top]=x;  //We are using '*s' pointer to traverse through and 'top' for accessing the indexes by using object pointer 'st'.
+	}
+}
+
+#Pop function:
+I/P:
+
+int pop(stack *st){
+	int x=-1;
+	if(st->top==-1){
+		cout<<"Stack Overflow";
+	}else{
+		st->s[st->top]=x;
+		st->top--;
+	}
+	return x;
+}
+
+#Peek function:
+I/P:
+                                    
+void peek(struct stack st,int pos){
+	
+	int x=-1;
+	if(st.top - pos +1>0){
+		cout<<"Invalid Position";
+	}else{
+		x=st.s[st.top - pos +1]; //This is a formula for finding out the index of the stack.
+	}
+	return x;
+}
+
+#Diplaying the stack:
+I/P:
+void Display(struct stack st){
+    for(int i=top;i>=0;i--){
+       cout<<st->s[i];
+    }
+}
+
+----------------------------------------------------------------------------------
+Stack Using Linked List: In this type we will start inserting elements from the last and to head.
+#include<iostream>
+using namespace std;
+
+class node{
+    public:
+        int data;
+        node *next;
+        node(int data){
+            this->data=data;
+            this->next=NULL;
+        }
+};
+
+class stack{
+
+    public:
+        node *top;
+        stack(){
+            top=NULL;
+        }
+        void push(int e){
+            if(top==NULL){
+                node *temp=new node(e);
+                top=temp;
+            }else{
+                node *temp=new node(e);
+                temp->next=top;
+                top=temp;
+            }
+
+        }
+
+        void pop(){
+            if(top==NULL){
+                node *temp=top;
+                delete temp;
+                top=NULL;
+                cout<<"element gone"<<endl;
+            }else{
+                node *temp=top;
+                top=temp->next;
+                delete temp;
+                cout<<"deleted"<<endl;
+            }
+        }
+        int peek(){
+            if(top==NULL){
+                cout<<"Stack empty";
+                return -1;
+            }else{
+                return top->data;
+            }
+        }
+
+        bool isEmpty(){
+            if(top==NULL){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        void display(){
+            node *temp=top;
+            while(temp!=NULL){
+                cout<<temp->data<<" ";
+                temp=temp->next;
+            }
+            cout<<endl;
+        }
+
+};
+
+int main(){
+
+    stack st;
+    st.push(34);
+    st.push(45);
+    st.push(90);
+    st.push(182);
+    st.display();
+    st.pop();
+    cout<<st.peek()<<endl;
+    st.pop();
+    st.pop();
+    st.pop();
+    st.pop();
+    cout<<st.isEmpty();
+    cout<<st.peek();
+    
+    return 0;
+}
+Two Stack implementation in using an array:
+#include<iostream>
+using namespace std;
+class TwoStack{
+    public:
+        int *arr;
+        int top1;
+        int top2;
+        int size;
+        TwoStack(int size){
+            this->size=size;
+            arr=new int[size];
+            this->top1=-1;
+            this->top2=size;
+        }
+
+        void push1(int e){
+            if(top2-top1>1){
+                top1++;
+                arr[top1]=e;
+            }else{
+                cout<<"Stack overflow"<<endl;
+            }
+
+        }
+
+        void push2(int e){
+            if(top2-top1>1){
+                top2--;
+                arr[top2]=e;
+            }else{
+                cout<<"Stack overflow"<<endl;
+            }
+        }
+
+        void pop1(){
+            if(top1>=0){
+                top1--;
+            }else{
+                cout<<"Stack underflow"<<endl;
+            }
+        }
+        void pop2(){
+            if(top2<size){
+                top2++;
+            }else{
+                cout<<"Stack underflow"<<endl;
+            }
+        }
+        int peek1(){
+            if(top1>=0){
+                return arr[top1];
+            }else{
+                return -1;
+            }
+        }
+
+        int peek2(){
+            if(top2<size){
+                return arr[top2];
+            }else{
+                return -1;
+            }
+        }
+        void display(){
+            cout<<"Stack 1"<<endl;
+            int s=top1;
+            while(s>-1){
+                cout<<arr[s]<<" ";
+                s--;
+            }
+            cout<<endl;
+            cout<<"Stack 2"<<endl;
+            s=top2;
+            while(s<size){
+                cout<<arr[s]<<" ";
+                s++;
+            }
+        }
+};
+
+int main(){
+    TwoStack st(6);
+    st.push1(12);
+    st.push2(56);
+    cout<<st.peek1()<<endl;
+    st.push2(23);
+    cout<<st.peek2()<<endl;
+    st.display();
+
+    return 0;
+}
