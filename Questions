@@ -1020,3 +1020,36 @@ public:
         
     }
 };
+----------------------------------------
+Question 23: https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+Approach 1: Brute Force , T.C.=O(N^2)
+int maxProfit(vector<int> &arr) {
+  int max = 0;
+  int n = arr.size();
+  for (int i = 0; i < n; i++) {
+    for (int j = i + 1; j < n; j++) {
+      if (arr[j] > arr[i]) {
+        max = max(arr[j] - arr[i], maxPro);
+      }
+    }
+  }
+  return max;
+}
+
+Approach 2: Optimal Solution
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int n=prices.size();
+        int minPro=INT_MAX;
+        int maxPro=0;
+        
+        for(int i=0;i<n;i++){
+            minPro=min(minPro,prices[i]);
+            maxPro=max(maxPro,prices[i]-minPro);
+        }
+        return maxPro;
+        
+    }
+};
+-------------------------------------------
