@@ -1479,7 +1479,42 @@ bool isBalanced(node *root){
     return isBalanced(root).first;
 
 }
+----------------------------------------------
+Checking and Calculating Sum tree
+Solution:
+pair<bool,int> sumTree(node* root){
+    //base case
+    if(root==NULL){
+        pair<bool,int>p=make_pair(true,0);
+    }
 
+    //for leaf nodes
+    if(root->left==NULL && root->right){
+        pair<bool,int>p=make_pair(true,root->data);
+    }
+    //traversals
+    pair<bool,int>left=sumTree(root->left);
+    pair<bool,int>right=sumTree(root->right);
+    //calculating the required fields
+    bool leftAns=left.first;
+    bool rightAns=right.first;
+    bool condn= root->data==(left.second+right.second);
+    //saving the final answers
+    pair<bool,int>ans;
+    if(leftAns && rightAns && condn){
+        ans.first=true;
+        ans.second= 2*root->data;
+        
+    }else{
+        ans.first=false;
+    }
+
+    return ans;
+}
+
+bool sumTree(node* root){
+    return sumTree(root).first;
+}
 ----------------------------------
 Using Linked List-
 I/P:
