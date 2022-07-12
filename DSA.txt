@@ -1428,6 +1428,58 @@ int noOfLeafNodes(BinaryTreeNode<int> *root){
     inorder(root, cnt);
     return cnt;
 }
+-------------------------------------------------------
+Checking Whether a Tree is balanced is not:
+Approach 1: T.C. = O(N^2)
+bool isBalanced(node *root){
+    //base case
+    if(root==NULL){
+        return false;
+    }
+    //traversal of nodes
+    bool left=isBalanced(root->left);
+    bool right=isBalanced(root->right);
+    //calculating heights
+    bool diff=abs(height(root->left)-height(root->right))<=1;
+
+    if(left && right && diff){
+        return 1;
+    }else{
+        return false;
+    }
+
+
+}
+
+Approach 2: Using pair STL, T.C.=O(N)
+pair<bool,int> isBalanced(node* root){
+    if(root==NULL){
+        pair<bool,int>p=make_pair(true,0);
+        return p;
+    }
+    //creating pair's for sub-trees
+    pair<int,int> left=isBalanced(root->left);
+    pair<int,int>right=isBalanced(root->right);
+    //saving the required result
+    bool left=left.first;
+    bool right=right.first;
+    bool diff=abs(left.second-right.second)<=1;
+    //final answer
+    pair<bool,int>ans;
+    if(left && right && diff){
+        ans.first=true;
+        
+    }else{
+        ans.first=true;
+    }
+
+    return ans;
+}
+bool isBalanced(node *root){
+    return isBalanced(root).first;
+
+}
+
 ----------------------------------
 Using Linked List-
 I/P:
