@@ -1096,3 +1096,35 @@ void rotateMatrix(vector<vector<int>>&matrix){
         reverse(matrix[i].begin(),matrix[i].end());
     }
 }
+---------------------------------------------------
+Question 26 : 
+Approach 1 :- Brute Force
+vector<pair<int,int>>Merge(vector<pair<int,int>>&arr){
+    int n=arr.size();
+    vector<pair<int,int>>ans;
+    //sorting the array,if input is not sorted
+    sort(arr.begin(), arr.end());
+    //checking for each interval
+    for(int i=0;i<n;i++){
+        int s=arr[i].first;
+        int e=arr[i].second;
+
+        //if the interval already exits then skip current iteration
+        if(!ans.empty()){
+            if(s<=ans.back().second()){
+                continue;
+            }
+        }
+        //now traversing the latter intervals to check for overlapping
+        for(int j=i+1;j<n;j++){
+            if(arr[j].first<=e){
+                e=max(e,arr[j].second);
+            }
+        }
+        //double-check 
+        e=max(e,arr[i].second);
+        ans.push_back({s,e});
+    }
+    return ans;
+}
+Approach 2: 
