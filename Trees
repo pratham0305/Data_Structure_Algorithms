@@ -1121,4 +1121,120 @@ vector<int> Rightode* root){
     solve(root,ans,0);
     return ans;    
 }
+----------------------------------
+Sum of longest bloodline of a tree(sum of longest path):
+T.C.= O(N) S.C.=O(height of tree)
+
+    void solve(Node* root, int sum, int &maxSum, int len, int &maxLen) {
+        //base case
+        if( root == NULL ) {
+            
+            if(len > maxLen) //if curr path is greater
+            {
+                maxLen = len;
+                maxSum = sum;
+            }
+            else if(len == maxLen) 
+            {
+                maxSum = max(sum, maxSum);
+            }//we ignored len<maxLen case because we are searching for longest path
+            return;
+        }
+        //calculating sum after each traversal
+        sum = sum + root->data;
+        //left child traversal
+        solve(root->left, sum, maxSum, len+1, maxLen);
+        //right child traversal
+        solve(root->right, sum, maxSum, len+1, maxLen);
+
+    }
+    
+    int sumOfLongRootToLeafPath(Node *root)
+    {
+        int len = 0;
+        int maxLen = 0;
+        
+        int sum = 0;
+        int maxSum = INT_MIN;
+        
+        solve(root, sum, maxSum, len, maxLen);
+        
+        return maxSum;
+    }
+--------------------------------------------
+Lowest Common Ancestor:
+    Node* lca(Node* root ,int n1 ,int n2 )
+    {
+       //base case
+        if(root == NULL)
+        {
+            return NULL;
+        }
+        
+        if(root->data == n1 || root->data == n2) 
+        {
+            return root;
+        }
+        //traversing
+        Node* leftAns = lca(root->left, n1, n2);
+        Node* rightAns = lca(root->right, n1, n2);
+
+        //4 cases are possible
+        //curr node is LCA
+        if(leftAns != NULL && rightAns != NULL) 
+        {
+            return root;
+        }
+
+   
+        else if(leftAns != NULL && rightAns == NULL)
+            return leftAns;
+
+        
+        else if(leftAns == NULL && rightAns != NULL)
+            return rightAns;
+            
+        else//not present
+            return NULL;
+    }
+
+----------------------------------------- 
+K-sum paths:
+given an integer K, find the all possible paths whose sum is equal to K
+
+void solve(TreeNode* root, int k, int &count, vector<int> path) {
+        //base case
+        if(root == NULL)
+            return ;
+        
+        path.push_back(root->val);
+        
+        //left
+        solve(root->left, k, count, path);
+        //right
+        solve(root->right, k, count, path);
+        
+        //check for K Sum
+        
+        int size = path.size();
+        long sum = 0;
+        for(int i = size-1; i>=0; i--)  {
+            sum += path[i];
+            if(sum == k)
+                count++;
+        }
+        
+        path.pop_back()//we can choose not too use this statment.since in evry iteration a new vector will be creaated.
+    }
+    int pathSum(TreeNode* root, int targetSum) {
+        vector<int> path;
+        int count = 0;
+        solve(root, targetSum, count, path);
+        return count;
+    }
+--------------------------------------------------------------
+
+
+
+
 
