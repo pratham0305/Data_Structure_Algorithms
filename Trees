@@ -1233,8 +1233,3 @@ void solve(TreeNode* root, int k, int &count, vector<int> path) {
         return count;
     }
 --------------------------------------------------------------
-
-
-
-
-
