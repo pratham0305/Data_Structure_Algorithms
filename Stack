@@ -255,3 +255,107 @@ int main(){
 
     return 0;
 }
+-------------------------------
+
+Deleting middle elemnet from stack
+#include<bits/stdc++.h>
+using namespace std;
+
+void solve(stack<int>&ans,int count,int size){
+	//base case
+	if(count== size/2){
+		ans.pop();
+		return ;
+	}
+	//saving the non-middle elements
+	int num=ans.top();
+	ans.pop();
+
+	//recursive call
+	solve(ans,count+1,size);
+	ans.push(num);
+}
+void deleteMiddleElement(stack<int>&ans,int n){
+	int count=0;
+	solve(ans,count,n);
+}
+int main(){
+	stack<int>st;
+	st.push(23);
+	st.push(89);
+	st.push(34);
+	st.push(10);
+	st.push(90);
+	deleteMiddleElement(st,5);
+	for(int i=0;i<st.size();i++){
+		cout<<st.top()<<endl;
+		st.pop();
+	}
+
+	
+
+
+	return 0;
+}
+------------------------
+Sorting A Stack using recusion
+void sortedInsert(stack<int>&ans,int x){  //Time Complexity = O(n^2)
+    //base case
+    if(ans.empty() || ans.top()<x){
+        ans.push(x);
+        return;
+    }
+    //saving the elements
+    int num=ans.top();
+    ans.pop();
+    //recrusive call
+    sortedInsert(ans,x);
+    ans.push(num);
+}
+
+void sortStack(stack<int> &stack)
+{
+	//base case
+    if(stack.empty()){
+        return ;
+    }
+    //saving the elements
+    int num=stack.top();
+    stack.pop();
+    //recursive call
+    sortStack(stack);
+    //insert in sorted order
+    sortedInsert(stack,num);
+}
+------------------------
+Checking Redundancy of brackets using Stack
+#include<stack>
+bool findRedundantBrackets(string &s)
+{
+    stack<char>st;
+    for(int i=0;i<s.length();i++){
+        char c=s[i];
+        
+        if(c=='('||c=='+'||c=='-'||c=='/'||c=='*'){
+            st.push(c);
+        }else{
+            //for closing brackets and alphabets
+            if(c==')'){
+                bool isRedundant=true;
+                while(st.top()!='('){
+                    char top=st.top();
+                    if(top=='+'||top=='-'||top=='/'||top=='*'){
+                        isRedundant=false;
+                    }
+                    st.pop();
+                }
+                if(isRedundant){
+                    return true;
+                }
+                st.pop();
+            }
+        }
+    }
+    return false;
+}
+----------------------
