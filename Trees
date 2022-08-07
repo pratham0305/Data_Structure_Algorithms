@@ -435,12 +435,12 @@ int Rsearch(Node *t,int key){
 }
 
 /* This funcction uses search iteratively.*/
-Node *search(Node *t,int key){
+Node *search(Node *t,int key){//Takes same time as resursive one but takes O(1) space.
    cout<<"Enter the key value you want to search:";
    cin>>key;
    while(t!=NULL){
      if(key==t->data){
-        return t;
+        return t;//or true
      }else if(key<t->data){
         t=t->lchild;
      }else{
@@ -448,7 +448,7 @@ Node *search(Node *t,int key){
      }
      
    }
-   return NULL;
+   return NULL;//or false
    
 ## Inserting Node in a Binary search tree:
 I/P:
@@ -479,32 +479,26 @@ void insert(Node *t,int key){
   }
   /* This Insert function is written in recursive form form.
 Node *insert(Node *p,int key){
-   Node *t;
-   if(p=NULL){
-      t= new Node;
-      t->data =key;
-      t->lchild = t->rchild = NULL;
-      return t;
-   }
-   if(key<p->data){
-     p->lchild = insert(p->lchild,key);
-   }else{
-     p->rchild = insert(p->rchiild,key);
-   }
+Node* insertIntoBST(Node* root,int d){
+  if(root==NULL){
+    root=new Node(d);
+    return root;
 
+  }
+  if(d>root->data){
+    root=insertIntoBST(root->right,d);
+  }else{
+    root=insertIntoBST(root->left,d);
+  }
+  return root;
 }
-
-
-int main(){ 
-   Node *root =NULL;
-   root = insert(root,30); //Thos statement helps in cretaing the first root node of a binary search tree.
-   /*These steps now create new children nodes of the root node.*/
-   insert(root,23);
-   insert(root,10);
-   return 0;
-
-
-
+void TakeInput(Node* root){
+  int data;
+  cin>>data;
+  while(data!=-1){
+    root=insertIntoBST(root,data);
+    cin>>data;
+  }
 }
 NOTE : The code below mentions the creation,search and deletion of Nodes of the Binary Search tree:
 I/P:
