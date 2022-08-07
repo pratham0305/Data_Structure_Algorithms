@@ -500,162 +500,61 @@ void TakeInput(Node* root){
     cin>>data;
   }
 }
-NOTE : The code below mentions the creation,search and deletion of Nodes of the Binary Search tree:
-I/P:
-#include<iostream>
-using namespace std;
+------------------------------
+Deletion:
+int findMax(Node* root){
+  Node* temp=root;
+  while(temp->right!=NULL){
+    temp=temp->right;
+  }
+  return temp->data;
+}
+int minVal(Node* root){
+  Node* temp=root;
+  while(temp->left!=NULL){
+    temp=temp->left;
+  }
+  return temp->data;
+}
 
-class Node{
-	public:
-		Node *lchild;
-		int data;
-		Node *rchild;
-};
+Node* deleteFromBST(Node* root,int key){
+  if(root==NULL){
+    return root;
+  }
+  if(root->data==key){
+    //No child
+    if(root->left==NULL &&root->right==NULL){
+      delete root;
+      return NULL;
+    }
+    //1 child
 
-class Binarytree{
-	private:
-		Node *root;
-	public:
-		Binarytree(){
-			root =NULL;
-		}
-		Node *getRoot(){
-			return root;
-		}
-		
-		void insert(int key){
-			Node *p,*r;
-			Node *t=root;
-			//If root is empty'
-			if(root==NULL){
-				p=new Node;
-				p->data=key;
-				p->lchild=NULL;
-				p->rchild=NULL;
-				root=p;
-				return;
-			}
-			while(t!=NULL){
-				r=t;
-				if(key<t->data){
-					t=t->lchild;
-				}else if(key>t->data){
-					t=t->rchild;
-				}else{
-					return;
-				}
-			}
-			//Now t points at NULL and r at the insert position.
-			p= new Node;
-			p->data=key;
-			p->lchild=NULL;
-			p->rchild=NULL;
-			
-			if(key<r->data){
-				r->lchild=p;
-			}else{
-				r->rchild=p;
-			}
-			
-			
-			
-		}
-		Node *search(int key){
-			Node *t = root;
-			while(t!=NULL){
-				if(key==t->data){
-					return t;
-				}else if(key<t->data){
-					t=t->lchild;
-				}else{
-					t=t->rchild;
-				}
-			}
-			return NULL;
-		}
-		void inorder(Node *p){
-			if(p){
-				inorder(p->lchild);
-				cout<<p->data;
-				inorder(p->rchild);
-			}
-		}
-		
-		int Height(Node *p){
-			int x,y;
-			if(p==NULL){
-				return 0;
-			}
-			x=Height(p->lchild);
-			y=Height(p->rchild);
-			return x>y ? x+1 : y+1;
-		}
-		
-		Node *Inpre(Node *p){
-			while(p && p->rchild!=NULL){
-				p=p->rchild;
-			}
-			return p;
-		}
-		
-		Node *Insucc(Node *p){
-			while(p && p->lchild==NULL){
-				p=p->lchild;
-			}
-			return p;
-		}
-		Node *Delete(Node *p,int key){
-			Node *q;
-			if(p=NULL){
-				return NULL;
-			}
-			
-			if(p->lchild==NULL && p->rchild==NULL){ //This condition for the leaf node.
-				if(p==root){
-					root==NULL;
-					return NULL;
-				}
-				delete p;
-				return NULL;
-			}
-			if(key < p->data){
-				p->lchild=Delete(p->lchild,key);
-			}else if(key > p->data){
-				p->rchild=Delete(p->rchild,key);
-			}else{
-				if(Height(p->lchild) > Height(p->rchild)){  //This is to check whether the height of the left subtree is more than the left one.
-					q=Inpre(p->lchild);  //If this is true then the InorderPredecessor will take its place.
-					p->data = q->data;
-					p->lchild=Delete(p->lchild,q->data);
-				}else{
-					q=Insucc(p->rchild); //Here , InorderSuccessor will take it's place.
-					p->data=q->data;
-					p->rchild = Delete(p->rchild,q->data);
-				}
-			}
-			return p;
-		}
-		
-};
-
-
-int main(){
-	class Binarytree bst;
-	bst.insert(90);
-	bst.insert(79);
-	bst.insert(60);
-	
-	bst.inorder(bst.getRoot());
-	cout<<endl;
-	
-	Node *temp = bst.search(60);
-	if(temp!=NULL){
-		cout<<"Element found:"<<temp->data<<endl;
-	}else{
-		cout<<"Element not found.";
-	}
-	
-	return 0;
+    //left child only
+    if(root->left!=NULL && root->right==NULL){
+      Node* temp=root->left;
+      delete root;
+      return temp;
+    }
+    //right child only
+    if(root->left==NULL && root->right!=NULL){
+      Node* temp=root->right;
+      delete root;
+      return temp;
+    }
+    //Both child
+    if(root->left!=NULL && root->right!=NULL){
+      int mini=minVal(root->right)->data;   //int max=findMax(root->left)->data;                 //we can also use Max value of root's left subtree
+      root->data=mini; //root->data=max;
+      root->right=deleteFromBST(root->right,mini);  //root->left=deletFromBSR(root->right,max);
+      return root;
+    }
+  }else if(root->data>key){
+    root->left=deleteFromBST(root->left);
+    return root;
+  }else{
+    root->right=deleteFromBST(root->right);
+  }
+  return root;
 }
  -----------------------------------------------------------------------------------------------------------------------------------------------------------
 ## AVL Trees :- These are BST with balanced heights. 
