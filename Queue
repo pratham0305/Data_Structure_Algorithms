@@ -1,3 +1,7 @@
+Prirority Queues in STL are implemented using Max heap
+
+
+
 Queues :- Follows FIFO property.
 # Using an array: 
 I/P:
@@ -404,3 +408,4 @@ public:
         }
     }
 };
+
