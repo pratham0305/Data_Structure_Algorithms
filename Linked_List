@@ -497,4 +497,122 @@ Node* floydDetection(Node* head){
 
     return NULL;
 }
+----------------------------------
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+class Node{
+    public:
+        int value;
+        Node* next;
+        Node(int data){
+            this->value=data;
+            this->next=NULL;
+        }
+        
+};
+void InsNodAtPos(int pos,int data,Node* &head){
+            if(head==NULL){
+                Node* t=new Node(data);
+                head=t;
+            }else{
+                if(pos==1){
+                    Node* newNode= new Node(data);
+                    newNode->next=head;
+                    head=newNode;
+                }else{
+                    Node* temp=head;
+                    Node* t=new Node(data);
+                    int count=1;
+                    while(count< pos-1 && temp->next!=NULL){
+                        temp=temp->next;
+                        count++;
+                    }
+                    if(temp->next ==NULL){//last node
+                        temp->next=t;
+                        
+                        
+                        return;
+                    }
+                    t->next=temp->next;
+                    temp->next=t;
+                    
+                    
+                }
+            }
+            
+        }
+void DeleteAtPos(int pos,Node* &head){
+    if(head==NULL){return;
+        
+    }else{
+        if(pos==1){
+            Node* curr=head;
+            head=curr->next;
+            curr->next=NULL;
+            delete curr;
+        }else{
+            Node *curr=head;
+            Node* prev=NULL;
+            int count=1;
+            while(count<pos && curr->next!=NULL){
+                prev=curr;
+                curr=curr->next;
+                count++;
+            }
+            if(curr->next==NULL){
+                prev->next=NULL;
+                delete curr;
+                return;
+            }
+            prev->next=curr->next;
+            curr->next=NULL;
+            delete curr;
+        }
+    }
+    
+}
+
+Node* Reverse(Node* head){
+    Node* curr=head;
+    Node* prev=NULL;
+    Node* temp;
+    while(curr!=NULL){
+        temp=curr->next;
+        curr->next=prev;
+        prev=curr;
+        curr=temp;
+    }
+    return prev;
+}
+void Display(Node* &head){
+    Node *temp=head;
+    while(temp!=NULL){
+        cout<<temp->value<<endl;
+        temp=temp->next;
+            
+    }
+}
+
+int main(){
+    Node *head;
+
+    InsNodAtPos(2,34,head);
+    
+    InsNodAtPos(1,67,head);
+    InsNodAtPos(2,65,head);
+    //Display(head);
+    InsNodAtPos(7,88,head);
+    Display(head);
+    DeleteAtPos(7,head);
+    cout<<"New LL"<<endl;
+    Display(head);
+    head=Reverse(head);
+    cout<<"Reversed:"<<endl;
+    Display(head);
+    
+    
+    
+    return 0;
+}
 
