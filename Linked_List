@@ -593,7 +593,15 @@ void Display(Node* &head){
             
     }
 }
-
+Node* Middle(Node* &head){
+    Node* slow=head;
+    Node* fast=head->next;
+    while(fast!=NULL && fast->next !=NULL){
+        fast=fast->next->next;
+        slow=slow->next;
+    }
+    return slow;
+}
 int main(){
     Node *head;
 
