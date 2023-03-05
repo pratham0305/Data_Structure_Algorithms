@@ -359,3 +359,43 @@ bool findRedundantBrackets(string &s)
     return false;
 }
 ----------------------
+PostFix To Infix
+#include<bits/stdc++.h>
+using namespace std;
+bool isOperand(char x){
+    if(x>='a'&& x<='z' || x>='A'&& x<='Z'){
+        return true;
+    }
+    return false;
+}
+
+
+void PostfixToInfix(string Post){
+    stack<string> st;
+    int i=0;
+    string x,y;
+    while(Post[i] != Post.length()){
+        if(isOperand(Post[i])){
+            st.push(string(1,Post[i]));
+            
+        }else{
+            x=st.top();
+            st.pop();
+            y=st.top();
+            st.pop();
+            string ans=x+Post[i];
+            ans= ans+y;
+            st.push(ans);
+        }
+        i++;
+    }
+    cout<<st.top();
+    
+}   
+
+int main(){
+    
+    string postfix="ab+cd-*";
+    PostfixToInfix(postfix);
+    
+}
