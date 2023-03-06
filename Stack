@@ -400,3 +400,46 @@ int main(){
     PostfixToInfix(postfix);
     
 }
+---------------------------
+Prefix to Infix
+
+#include<bits/stdc++.h>
+using namespace std;
+bool isOperand(char x){
+    if(x>='a'&& x<='z' || x>='A'&& x<='Z'){
+        return true;
+    }
+    return false;
+}
+
+
+void PrefixToInfix(string Pre){
+    stack<string> st;
+    int i=Pre.size();
+    i--;
+    string x,y;
+    while(i>=0){
+        if(isOperand(Pre[i])){
+            st.push(string(1,Pre[i]));
+            
+        }else{
+            x=st.top();
+            st.pop();
+            y=st.top();
+            st.pop();
+            string ans=x+string(1,Pre[i]);
+            ans= ans+y;
+            st.push(ans);
+        }
+        i--;
+    }
+    cout<<st.top();
+    
+}   
+
+int main(){
+    
+    string prefix="*+ab-cd";
+    PrefixToInfix(prefix);
+    
+}
