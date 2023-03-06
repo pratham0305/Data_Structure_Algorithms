@@ -360,6 +360,7 @@ bool findRedundantBrackets(string &s)
 }
 ----------------------
 PostFix To Infix
+
 #include<bits/stdc++.h>
 using namespace std;
 bool isOperand(char x){
@@ -374,7 +375,7 @@ void PostfixToInfix(string Post){
     stack<string> st;
     int i=0;
     string x,y;
-    while(Post[i] != Post.length()){
+    while(i < Post.size()){
         if(isOperand(Post[i])){
             st.push(string(1,Post[i]));
             
@@ -383,7 +384,7 @@ void PostfixToInfix(string Post){
             st.pop();
             y=st.top();
             st.pop();
-            string ans=x+Post[i];
+            string ans=x+string(1,Post[i]);
             ans= ans+y;
             st.push(ans);
         }
