@@ -443,3 +443,86 @@ int main(){
     PrefixToInfix(prefix);
     
 }
+----------------------
+Postfix Evalustion
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+void postEvaluation(string postfix){
+    stack<int> st;
+    int i=0;
+    int x,y,z;
+    while(i < postfix.size()){
+        if(postfix[i] >= '0' && postfix[i]<='9'){
+            st.push(postfix[i]-'0');
+        }else{
+            x=st.top();
+            st.pop();
+            y=st.top();
+            st.pop();
+            if(postfix[i]=='+'){
+                z=x+y;
+            }else if(postfix[i]=='-'){
+                z=x-y;
+            }else if(postfix[i]=='*'){
+                z=x*y;
+            }else{
+                z=x/y;
+            }
+            st.push(z);
+        }
+        i++;
+    }
+    cout<<st.top();
+}
+
+int main(){
+    
+    string postfix = "21+3*";
+    postEvaluation(postfix);
+    
+}
+------------------------
+Prefix Evluation
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+void preEvaluation(string prefix){
+    stack<int> st;
+    int i=prefix.size();
+    i--;
+    int x,y,z;
+    while(i >= 0){
+        if(prefix[i] >= '0' && prefix[i]<='9'){
+            st.push(prefix[i]-'0');
+        }else{
+            x=st.top();
+            st.pop();
+            y=st.top();
+            st.pop();
+            if(prefix[i]=='+'){
+                z=x+y;
+            }else if(prefix[i]=='-'){
+                z=x-y;
+            }else if(prefix[i]=='*'){
+                z=x*y;
+            }else{
+                z=x/y;
+            }
+            st.push(z);
+        }
+        i--;
+    }
+    cout<<st.top();
+}
+
+int main(){
+    
+    string prefix = "+9*26";
+    preEvaluation(prefix);
+    
+}
